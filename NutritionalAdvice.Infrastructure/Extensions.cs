@@ -14,6 +14,8 @@ using System.Threading.Tasks;
 using NutritionalAdvice.Domain.Ingredients;
 using NutritionalAdvice.Infrastructure.Repositories;
 using NutritionalAdvice.Infrastructure.DomainModel;
+using NutritionalAdvice.Domain.Recipes;
+using NutritionalAdvice.Domain.MealPlans;
 
 namespace NutritionalAdvice.Infrastructure
 {
@@ -34,6 +36,8 @@ namespace NutritionalAdvice.Infrastructure
                         ServerVersion.AutoDetect(connectionString)));
 
             services.AddScoped<IIngredientRepository, IngredientRepository>();
+            services.AddScoped<IRecipeRepository, RecipeRepository>();
+            services.AddScoped<IMealPlanRepository, MealPlanRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddAplication();

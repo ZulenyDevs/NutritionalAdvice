@@ -8,7 +8,7 @@ namespace NutritionalAdvice.Domain.MealPlans
 {
     public class MealPlanFactory : IMealPlanFactory
     {
-        public MealPlan Create(string name, string description, string goal, int dailyCalories, int dailyProtein, int dailyCarbohydrates, int dailyFats, Guid nutritionistId, Guid patientId)
+        public MealPlan Create(string name, string description, string goal, int dailyCalories, double dailyProtein, double dailyCarbohydrates, double dailyFats, Guid nutritionistId, Guid patientId)
         {
             if (nutritionistId == Guid.Empty || patientId == Guid.Empty)
             {

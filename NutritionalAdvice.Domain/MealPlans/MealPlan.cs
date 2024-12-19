@@ -28,7 +28,7 @@ namespace NutritionalAdvice.Domain.MealPlans
             }
         }
 
-        public MealPlan(string name, string description, string goal, int dailyCalories, int dailyProtein, int dailyCarbohydrates, int dailyFats, Guid nutritionistId, Guid patientId) : base(Guid.NewGuid())
+        public MealPlan(string name, string description, string goal, int dailyCalories, double dailyProtein, double dailyCarbohydrates, double dailyFats, Guid nutritionistId, Guid patientId) : base(Guid.NewGuid())
         {
             Name = name;
             Description = description;
