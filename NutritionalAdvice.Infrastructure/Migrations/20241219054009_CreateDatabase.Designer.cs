@@ -9,8 +9,8 @@ using NutritionalAdvice.Infrastructure.StoredModel;
 namespace NutritionalAdvice.Infrastructure.Migrations
 {
     [DbContext(typeof(StoredDbContext))]
-    [Migration("20241219011520_AddNewTables")]
-    partial class AddNewTables
+    [Migration("20241219054009_CreateDatabase")]
+    partial class CreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -12,7 +12,7 @@ using NutritionalAdvice.Domain.Recipes;
 
 namespace NutritionalAdvice.Infrastructure.DomainModel.Config
 {
-    internal class MealPlanConfig : IEntityTypeConfiguration<MealPlan>
+    internal class MealPlanConfig : IEntityTypeConfiguration<MealPlan>, IEntityTypeConfiguration<MealTime>
     {
         public void Configure(EntityTypeBuilder<MealPlan> builder)
         {

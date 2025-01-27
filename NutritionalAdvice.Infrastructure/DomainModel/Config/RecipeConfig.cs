@@ -13,7 +13,7 @@ using System.Text.Json;
 
 namespace NutritionalAdvice.Infrastructure.DomainModel.Config
 {
-    internal class RecipeConfig : IEntityTypeConfiguration<Recipe>
+    internal class RecipeConfig : IEntityTypeConfiguration<Recipe>, IEntityTypeConfiguration<RecipeIngredient>
     {
         public void Configure(EntityTypeBuilder<Recipe> builder)
         {
