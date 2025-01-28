@@ -24,7 +24,7 @@ namespace NutritionalAdvice.Domain.Recipes
             IngredientId = ingredientId;
         }
 
-        internal void Update(double quantity, string unitOfMeasure, Guid ingredientId)
+        public void Update(double quantity, string unitOfMeasure, Guid ingredientId)
         {
             Quantity = quantity;
             UnitOfMeasure = unitOfMeasure;

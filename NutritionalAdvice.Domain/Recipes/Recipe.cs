@@ -42,7 +42,7 @@ namespace NutritionalAdvice.Domain.Recipes
             _recipeIngredients.Add(recipeIngredient);
         }
 
-        public void updateRecipeIngredient(Guid id, double quantity, string unitOfMeasure, Guid ingredientId)
+        public void UpdateRecipeIngredient(Guid id, double quantity, string unitOfMeasure, Guid ingredientId)
         {
             RecipeIngredient recipeIngredient = _recipeIngredients.FirstOrDefault(i => i.Id == id);
             if (recipeIngredient == null)
