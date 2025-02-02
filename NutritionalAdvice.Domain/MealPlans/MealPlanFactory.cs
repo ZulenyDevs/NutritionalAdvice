@@ -14,7 +14,7 @@ namespace NutritionalAdvice.Domain.MealPlans
             {
                 throw new ArgumentException("nutritionistId and patientId are required");
             }
-            MealPlan mealPlan = new MealPlan(name, description, goal, dailyCalories, dailyProtein, dailyCarbohydrates, dailyFats, nutritionistId, patientId);
+            MealPlan mealPlan = new MealPlan(name, description, goal, dailyCalories, nutritionistId, patientId);
             return mealPlan;
         }
     }

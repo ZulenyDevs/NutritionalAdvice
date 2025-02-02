@@ -38,7 +38,7 @@ namespace NutritionalAdvice.Domain.Recipes
 
         public void AddRecipeIngredient(double quantity, string unitOfMeasure, Guid recipeId, Guid ingredientId)
         {
-            RecipeIngredient recipeIngredient = new RecipeIngredient(quantity, unitOfMeasure, recipeId, ingredientId);
+            RecipeIngredient recipeIngredient = new RecipeIngredient(unitOfMeasure, recipeId, ingredientId);
             _recipeIngredients.Add(recipeIngredient);
         }
 

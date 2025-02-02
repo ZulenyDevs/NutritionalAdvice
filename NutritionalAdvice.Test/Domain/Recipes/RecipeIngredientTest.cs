@@ -21,7 +21,7 @@ namespace NutritionalAdvice.Test.Domain.Recipes
             Guid ingredientId = Guid.NewGuid();
 
             // act
-            RecipeIngredient recipeIngredient = new RecipeIngredient(quantity, unitOfMeasure, recipeId, ingredientId);
+            RecipeIngredient recipeIngredient = new RecipeIngredient(unitOfMeasure, recipeId, ingredientId);
 
             // assert
             Assert.Equal(quantity, recipeIngredient.Quantity);
@@ -39,7 +39,7 @@ namespace NutritionalAdvice.Test.Domain.Recipes
             string unitOfMeasure = "gramos";
             Guid recipeId = Guid.NewGuid();
             Guid ingredientId = Guid.NewGuid();
-            RecipeIngredient recipeIngredient = new RecipeIngredient(quantity, unitOfMeasure, recipeId, ingredientId);
+            RecipeIngredient recipeIngredient = new RecipeIngredient(unitOfMeasure, recipeId, ingredientId);
 
             // act
             recipeIngredient.Update(quantity, unitOfMeasure, ingredientId);
@@ -58,7 +58,7 @@ namespace NutritionalAdvice.Test.Domain.Recipes
             // arrange 
             Guid recipeId = Guid.NewGuid();
             Guid ingredientId = Guid.NewGuid();
-            RecipeIngredient recipeIngredient = new RecipeIngredient(quantity, unitOfMeasure, recipeId, ingredientId);
+            RecipeIngredient recipeIngredient = new RecipeIngredient(unitOfMeasure, recipeId, ingredientId);
 
             // act
             recipeIngredient.Update(quantity, unitOfMeasure, ingredientId);

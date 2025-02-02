@@ -106,7 +106,7 @@ namespace NutritionalAdvice.Test.Domain.Recipes
 
             Recipe recipe = new Recipe(name, description, preparationTime, cookingTime, portions, instructions);
 
-            var recipeIngredient = new RecipeIngredient(initialQuantity, initialUnitOfMeasure, recipe.Id, initialIngredientId);
+            var recipeIngredient = new RecipeIngredient(initialUnitOfMeasure, recipe.Id, initialIngredientId);
             
             recipe.RecipeIngredients.Add(recipeIngredient);
 
@@ -139,7 +139,7 @@ namespace NutritionalAdvice.Test.Domain.Recipes
             };
 
             Recipe recipe = new Recipe(name, description, preparationTime, cookingTime, portions, instructions);
-            var recipeIngredient = new RecipeIngredient(1.5, "kg", recipe.Id, Guid.NewGuid());
+            var recipeIngredient = new RecipeIngredient("kg", recipe.Id, Guid.NewGuid());
             
             recipe.RecipeIngredients.Add(recipeIngredient);
 

@@ -16,9 +16,9 @@ namespace NutritionalAdvice.Domain.Recipes
         public Guid RecipeId { get; private set; }
         public Guid IngredientId { get; private set; }
 
-        public RecipeIngredient(double quantity, string unitOfMeasure, Guid recipeId, Guid ingredientId) : base(Guid.NewGuid())
+        public RecipeIngredient(string unitOfMeasure, Guid recipeId, Guid ingredientId) : base(Guid.NewGuid())
         {
-            Quantity = quantity;
+            Quantity = 0;
             UnitOfMeasure = unitOfMeasure;
             RecipeId = recipeId;
             IngredientId = ingredientId;
