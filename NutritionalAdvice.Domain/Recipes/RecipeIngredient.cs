@@ -18,7 +18,7 @@ namespace NutritionalAdvice.Domain.Recipes
 
         public RecipeIngredient(string unitOfMeasure, Guid recipeId, Guid ingredientId) : base(Guid.NewGuid())
         {
-            Quantity = 0;
+            Quantity = 10;
             UnitOfMeasure = unitOfMeasure;
             RecipeId = recipeId;
             IngredientId = ingredientId;
