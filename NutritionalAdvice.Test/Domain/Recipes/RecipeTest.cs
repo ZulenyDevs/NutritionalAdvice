@@ -149,5 +149,69 @@ namespace NutritionalAdvice.Test.Domain.Recipes
             // Assert
             Assert.Empty(recipe.RecipeIngredients);
         }
+
+        [Fact]
+        public void UpdateRecipeIngredient_ShouldThrowInvalidOperationException_WhenIngredientNotFound()
+        {
+            // Arrange
+            string name = "Espaguetis a la Carbonara";
+            string description = "Un plato clásico italiano hecho con huevos, queso, panceta y pimienta.";
+            int preparationTime = 15;
+            int cookingTime = 20;
+            int portions = 4;
+            List<string> instructions = new()
+            {
+                "1. Hervir los espaguetis.",
+                "2. Cocinar la panceta hasta que esté crujiente.",
+                "3. Mezclar los huevos y el queso en un bol.",
+                "4. Combinar los espaguetis con la panceta y la mezcla de huevo.",
+                "5. Servir con una pizca de pimienta."
+            };
+            Recipe recipe = new Recipe(name, description, preparationTime, cookingTime, portions, instructions);
+            double updatedQuantity = 2.0;
+            string updatedUnitOfMeasure = "lt";
+            Guid updatedIngredientId = Guid.NewGuid();
+
+            
+            var nonExistentId = Guid.NewGuid();
+
+            // Act & Assert
+            var exception = Assert.Throws<InvalidOperationException>(() =>
+                recipe.UpdateRecipeIngredient(nonExistentId, updatedQuantity, updatedUnitOfMeasure, updatedIngredientId));
+
+            Assert.Equal("RecipeIngredient not found in Recipe", exception.Message);
+
+
+        }
+
+        [Fact]
+        public void RemoveRecipeIngredient_ShouldThrowInvalidOperationException_WhenIngredientNotFound()
+        {
+            // Arrange
+            string name = "Espaguetis a la Carbonara";
+            string description = "Un plato clásico italiano hecho con huevos, queso, panceta y pimienta.";
+            int preparationTime = 15;
+            int cookingTime = 20;
+            int portions = 4;
+            List<string> instructions = new()
+            {
+                "1. Hervir los espaguetis.",
+                "2. Cocinar la panceta hasta que esté crujiente.",
+                "3. Mezclar los huevos y el queso en un bol.",
+                "4. Combinar los espaguetis con la panceta y la mezcla de huevo.",
+                "5. Servir con una pizca de pimienta."
+            };
+            Recipe recipe = new Recipe(name, description, preparationTime, cookingTime, portions, instructions);
+            double updatedQuantity = 2.0;
+            string updatedUnitOfMeasure = "lt";
+            Guid updatedIngredientId = Guid.NewGuid();
+            var nonExistentId = Guid.NewGuid();
+
+            // Act & Assert
+            var exception = Assert.Throws<InvalidOperationException>(() =>
+                recipe.RemoveRecipeIngredient(nonExistentId));
+
+            Assert.Equal("RecipeIngredient not found in Recipe", exception.Message);
+        }
     }
 }

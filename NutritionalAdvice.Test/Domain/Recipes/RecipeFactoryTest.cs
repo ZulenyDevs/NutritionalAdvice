@@ -39,5 +39,22 @@ namespace NutritionalAdvice.Test.Domain.Recipes
             Assert.Equal(portions, recipe.Portions);
             Assert.Equal(instructions, recipe.Instructions);
         }
+
+        [Fact]
+        public void Create_ShouldThrowArgumentException_WhenAllParametersAreLessThanOne()
+        {
+            // Arrange
+            var factory = new RecipeFactory();
+            string name = "Test Recipe";
+            string description = "This is a test recipe.";
+            int preparationTime = 0; // preparationTime menor que 1
+            int cookingTime = 0; // cookingTime menor que 1
+            int portions = 0; // portions menor que 1
+            var instructions = new List<string> { "Step 1", "Step 2" };
+
+            // Act & Assert
+            var exception = Assert.Throws<ArgumentException>(() => factory.Create(name, description, preparationTime, cookingTime, portions, instructions));
+            Assert.Equal("preparationTime, cookingTime and portions must be greater than 0", exception.Message);
+        }
     }
 }

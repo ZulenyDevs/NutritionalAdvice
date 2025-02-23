@@ -41,5 +41,25 @@ namespace NutritionalAdvice.Test.Domain.MealPlans
             Assert.Equal(nutritionistId, mealPlanSaved.NutritionistId);
             Assert.Equal(patientId, mealPlanSaved.PatientId);
         }
+
+        [Fact]
+        public void Create_ShouldThrowArgumentException_WhenBothNutritionistIdAndPatientIdAreEmpty()
+        {
+            // Arrange
+            var factory = new MealPlanFactory();
+            string name = "Test Meal Plan";
+            string description = "This is a test meal plan.";
+            string goal = "Lose weight";
+            int dailyCalories = 2000;
+            double dailyProtein = 50;
+            double dailyCarbohydrates = 200;
+            double dailyFats = 70;
+            Guid nutritionistId = Guid.Empty; // NutritionistId vacío
+            Guid patientId = Guid.Empty; // PatientId vacío
+
+            // Act & Assert
+            var exception = Assert.Throws<ArgumentException>(() => factory.Create(name, description, goal, dailyCalories, dailyProtein, dailyCarbohydrates, dailyFats, nutritionistId, patientId));
+            Assert.Equal("nutritionistId and patientId are required", exception.Message);
+        }
     }
 }

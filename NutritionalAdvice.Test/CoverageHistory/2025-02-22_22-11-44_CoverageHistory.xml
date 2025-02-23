@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<coverage version="1.0" date="2025-02-22_22-11-44" tag="">
+  <assembly name="NutritionalAdvice.Application">
+    <class name="NutritionalAdvice.Application.Extensions" coveredlines="9" coverablelines="9" totallines="31" coveredbranches="0" totalbranches="0" coveredcodeelements="1" totalcodeelements="1" />
+    <class name="NutritionalAdvice.Application.Ingredients.CreateIngredient.CreateCommandHandler" coveredlines="14" coverablelines="14" totallines="38" coveredbranches="0" totalbranches="0" coveredcodeelements="2" totalcodeelements="2" />
+    <class name="NutritionalAdvice.Application.Ingredients.CreateIngredient.CreateIngredientCommand" coveredlines="1" coverablelines="1" totallines="11" coveredbranches="0" totalbranches="0" coveredcodeelements="1" totalcodeelements="1" />
+    <class name="NutritionalAdvice.Application.Ingredients.GetIngredients.GetIngredientsQuery" coveredlines="1" coverablelines="1" totallines="11" coveredbranches="0" totalbranches="0" coveredcodeelements="1" totalcodeelements="1" />
+    <class name="NutritionalAdvice.Application.Ingredients.GetIngredients.IngredientDto" coveredlines="5" coverablelines="5" totallines="17" coveredbranches="0" totalbranches="0" coveredcodeelements="5" totalcodeelements="5" />
+    <class name="NutritionalAdvice.Application.MealPlans.CreateMealPlan.CreateCommandHandler" coveredlines="14" coverablelines="14" totallines="38" coveredbranches="0" totalbranches="0" coveredcodeelements="2" totalcodeelements="2" />
+    <class name="NutritionalAdvice.Application.MealPlans.CreateMealPlan.CreateMealPlanCommand" coveredlines="1" coverablelines="1" totallines="11" coveredbranches="0" totalbranches="0" coveredcodeelements="1" totalcodeelements="1" />
+    <class name="NutritionalAdvice.Application.MealPlans.GetMealPlans.GetMealPlansQuery" coveredlines="1" coverablelines="1" totallines="11" coveredbranches="0" totalbranches="0" coveredcodeelements="1" totalcodeelements="1" />
+    <class name="NutritionalAdvice.Application.MealPlans.GetMealPlans.MealPlanDto" coveredlines="11" coverablelines="11" totallines="24" coveredbranches="0" totalbranches="0" coveredcodeelements="11" totalcodeelements="11" />
+    <class name="NutritionalAdvice.Application.MealPlans.GetMealPlans.MealTimeDto" coveredlines="5" coverablelines="5" totallines="17" coveredbranches="0" totalbranches="0" coveredcodeelements="5" totalcodeelements="5" />
+    <class name="NutritionalAdvice.Application.Recipes.CreateRecipe.CreateCommandHandler" coveredlines="14" coverablelines="14" totallines="38" coveredbranches="0" totalbranches="0" coveredcodeelements="2" totalcodeelements="2" />
+    <class name="NutritionalAdvice.Application.Recipes.CreateRecipe.CreateRecipeCommand" coveredlines="1" coverablelines="1" totallines="11" coveredbranches="0" totalbranches="0" coveredcodeelements="1" totalcodeelements="1" />
+    <class name="NutritionalAdvice.Application.Recipes.GetRecipeById.GetRecipeByIdQuery" coveredlines="1" coverablelines="1" totallines="11" coveredbranches="0" totalbranches="0" coveredcodeelements="1" totalcodeelements="1" />
+    <class name="NutritionalAdvice.Application.Recipes.GetRecipeById.RecipeDto" coveredlines="7" coverablelines="7" totallines="21" coveredbranches="0" totalbranches="0" coveredcodeelements="7" totalcodeelements="7" />
+    <class name="NutritionalAdvice.Application.Recipes.GetRecipeById.RecipeIngredientDto" coveredlines="5" coverablelines="5" totallines="17" coveredbranches="0" totalbranches="0" coveredcodeelements="5" totalcodeelements="5" />
+  </assembly>
+  <assembly name="NutritionalAdvice.Domain">
+    <class name="NutritionalAdvice.Domain.Abstractions.AggregateRoot" coveredlines="3" coverablelines="3" totallines="15" coveredbranches="0" totalbranches="0" coveredcodeelements="1" totalcodeelements="1" />
+    <class name="NutritionalAdvice.Domain.Abstractions.Entity" coveredlines="6" coverablelines="8" totallines="22" coveredbranches="1" totalbranches="2" coveredcodeelements="2" totalcodeelements="2" />
+    <class name="NutritionalAdvice.Domain.Ingredients.Ingredient" coveredlines="11" coverablelines="11" totallines="25" coveredbranches="0" totalbranches="0" coveredcodeelements="5" totalcodeelements="5" />
+    <class name="NutritionalAdvice.Domain.Ingredients.IngredientFactory" coveredlines="4" coverablelines="4" totallines="17" coveredbranches="0" totalbranches="0" coveredcodeelements="1" totalcodeelements="1" />
+    <class name="NutritionalAdvice.Domain.MealPlans.MealPlan" coveredlines="40" coverablelines="43" totallines="73" coveredbranches="4" totalbranches="4" coveredcodeelements="13" totalcodeelements="14" />
+    <class name="NutritionalAdvice.Domain.MealPlans.MealPlanFactory" coveredlines="7" coverablelines="7" totallines="21" coveredbranches="4" totalbranches="4" coveredcodeelements="1" totalcodeelements="1" />
+    <class name="NutritionalAdvice.Domain.MealPlans.MealTime" coveredlines="16" coverablelines="16" totallines="33" coveredbranches="0" totalbranches="0" coveredcodeelements="6" totalcodeelements="6" />
+    <class name="NutritionalAdvice.Domain.Recipes.Recipe" coveredlines="35" coverablelines="37" totallines="66" coveredbranches="3" totalbranches="4" coveredcodeelements="11" totalcodeelements="11" />
+    <class name="NutritionalAdvice.Domain.Recipes.RecipeFactory" coveredlines="7" coverablelines="7" totallines="21" coveredbranches="6" totalbranches="6" coveredcodeelements="1" totalcodeelements="1" />
+    <class name="NutritionalAdvice.Domain.Recipes.RecipeIngredient" coveredlines="16" coverablelines="16" totallines="34" coveredbranches="0" totalbranches="0" coveredcodeelements="6" totalcodeelements="6" />
+    <class name="NutritionalAdvice.Domain.Shared.QuantityValue" coveredlines="14" coverablelines="14" totallines="33" coveredbranches="4" totalbranches="4" coveredcodeelements="4" totalcodeelements="4" />
+  </assembly>
+  <assembly name="NutritionalAdvice.Infrastructure">
+    <class name="NutritionalAdvice.Infrastructure.DomainModel.DomainDbContext" coveredlines="0" coverablelines="12" totallines="32" coveredbranches="0" totalbranches="0" coveredcodeelements="0" totalcodeelements="7" />
+    <class name="NutritionalAdvice.Infrastructure.Extensions" coveredlines="0" coverablelines="18" totallines="48" coveredbranches="0" totalbranches="0" coveredcodeelements="0" totalcodeelements="1" />
+    <class name="NutritionalAdvice.Infrastructure.Handlers.Ingredient.GetIngredientsHandler" coveredlines="16" coverablelines="16" totallines="38" coveredbranches="0" totalbranches="0" coveredcodeelements="2" totalcodeelements="2" />
+    <class name="NutritionalAdvice.Infrastructure.Handlers.MealPlan.GetMealPlansHandler" coveredlines="29" coverablelines="29" totallines="52" coveredbranches="0" totalbranches="0" coveredcodeelements="2" totalcodeelements="2" />
+    <class name="NutritionalAdvice.Infrastructure.Handlers.Recipe.GetRecipeByIdHandler" coveredlines="34" coverablelines="34" totallines="59" coveredbranches="2" totalbranches="2" coveredcodeelements="2" totalcodeelements="2" />
+    <class name="NutritionalAdvice.Infrastructure.Repositories.IngredientRepository" coveredlines="0" coverablelines="20" totallines="48" coveredbranches="0" totalbranches="0" coveredcodeelements="0" totalcodeelements="6" />
+    <class name="NutritionalAdvice.Infrastructure.Repositories.MealPlanRepository" coveredlines="0" coverablelines="20" totallines="48" coveredbranches="0" totalbranches="0" coveredcodeelements="0" totalcodeelements="6" />
+    <class name="NutritionalAdvice.Infrastructure.Repositories.RecipeRepository" coveredlines="0" coverablelines="20" totallines="48" coveredbranches="0" totalbranches="0" coveredcodeelements="0" totalcodeelements="6" />
+    <class name="NutritionalAdvice.Infrastructure.Repositories.UnitOfWork" coveredlines="0" coverablelines="7" totallines="27" coveredbranches="0" totalbranches="0" coveredcodeelements="0" totalcodeelements="2" />
+    <class name="NutritionalAdvice.Infrastructure.StoredModel.Entities.IngredientStoredModel" coveredlines="5" coverablelines="5" totallines="36" coveredbranches="0" totalbranches="0" coveredcodeelements="5" totalcodeelements="5" />
+    <class name="NutritionalAdvice.Infrastructure.StoredModel.Entities.MealPlanStoredModel" coveredlines="11" coverablelines="11" totallines="52" coveredbranches="0" totalbranches="0" coveredcodeelements="11" totalcodeelements="11" />
+    <class name="NutritionalAdvice.Infrastructure.StoredModel.Entities.MealTimeStoredModel" coveredlines="5" coverablelines="5" totallines="34" coveredbranches="0" totalbranches="0" coveredcodeelements="5" totalcodeelements="5" />
+    <class name="NutritionalAdvice.Infrastructure.StoredModel.Entities.RecipeIngredientStoredModel" coveredlines="5" coverablelines="5" totallines="33" coveredbranches="0" totalbranches="0" coveredcodeelements="5" totalcodeelements="5" />
+    <class name="NutritionalAdvice.Infrastructure.StoredModel.Entities.RecipeStoredModel" coveredlines="8" coverablelines="8" totallines="42" coveredbranches="0" totalbranches="0" coveredcodeelements="8" totalcodeelements="8" />
+    <class name="NutritionalAdvice.Infrastructure.StoredModel.StoredDbContext" coveredlines="5" coverablelines="8" totallines="24" coveredbranches="0" totalbranches="0" coveredcodeelements="3" totalcodeelements="6" />
+  </assembly>
+  <assembly name="NutritionalAdvice.WebApi">
+    <class name="NutritionalAdvice.WebApi.Controllers.IngredientController" coveredlines="20" coverablelines="20" totallines="54" coveredbranches="0" totalbranches="0" coveredcodeelements="3" totalcodeelements="3" />
+    <class name="NutritionalAdvice.WebApi.Controllers.MealPlanController" coveredlines="20" coverablelines="20" totallines="54" coveredbranches="0" totalbranches="0" coveredcodeelements="3" totalcodeelements="3" />
+    <class name="NutritionalAdvice.WebApi.Controllers.RecipeController" coveredlines="20" coverablelines="20" totallines="54" coveredbranches="0" totalbranches="0" coveredcodeelements="3" totalcodeelements="3" />
+  </assembly>
+</coverage>
