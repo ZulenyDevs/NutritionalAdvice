@@ -3,12 +3,14 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NutritionalAdvice.Domain.Ingredients;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace NutritionalAdvice.Infrastructure.DomainModel.Config
 {
+    [ExcludeFromCodeCoverage]
     internal class IngredientConfig : IEntityTypeConfiguration<Ingredient>
     {
         public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Ingredient> builder)

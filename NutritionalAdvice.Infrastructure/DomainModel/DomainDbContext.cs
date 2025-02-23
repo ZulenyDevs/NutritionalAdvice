@@ -11,7 +11,7 @@ using NutritionalAdvice.Domain.MealPlans;
 
 namespace NutritionalAdvice.Infrastructure.DomainModel
 {
-    internal class DomainDbContext : DbContext
+    public class DomainDbContext : DbContext
     {
         public DbSet<Ingredient> Ingredient { get; set; }
         public DbSet<Recipe> Recipe { get; set; }

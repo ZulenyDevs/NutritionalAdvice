@@ -9,9 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using NutritionalAdvice.Domain.Shared;
 using NutritionalAdvice.Domain.Recipes;
+using System.Diagnostics.CodeAnalysis;
 
 namespace NutritionalAdvice.Infrastructure.DomainModel.Config
 {
+    [ExcludeFromCodeCoverage]
     internal class MealPlanConfig : IEntityTypeConfiguration<MealPlan>, IEntityTypeConfiguration<MealTime>
     {
         public void Configure(EntityTypeBuilder<MealPlan> builder)

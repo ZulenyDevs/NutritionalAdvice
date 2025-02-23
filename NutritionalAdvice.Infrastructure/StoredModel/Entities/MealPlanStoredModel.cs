@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace NutritionalAdvice.Infrastructure.StoredModel.Entities
 {
     [Table("mealplan")]
-    internal class MealPlanStoredModel
+    public class MealPlanStoredModel
     {
         [Key]
         [Column("Id")]

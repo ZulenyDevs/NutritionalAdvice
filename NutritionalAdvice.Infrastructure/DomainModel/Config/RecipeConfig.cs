@@ -10,9 +10,11 @@ using System.Threading.Tasks;
 using NutritionalAdvice.Domain.Shared;
 using NutritionalAdvice.Domain.Ingredients;
 using System.Text.Json;
+using System.Diagnostics.CodeAnalysis;
 
 namespace NutritionalAdvice.Infrastructure.DomainModel.Config
 {
+    [ExcludeFromCodeCoverage]
     internal class RecipeConfig : IEntityTypeConfiguration<Recipe>, IEntityTypeConfiguration<RecipeIngredient>
     {
         public void Configure(EntityTypeBuilder<Recipe> builder)

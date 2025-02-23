@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace NutritionalAdvice.Application.Recipes.CreateRecipe
 {
-    internal class CreateCommandHandler : IRequestHandler<CreateRecipeCommand, Guid>
+    public class CreateCommandHandler : IRequestHandler<CreateRecipeCommand, Guid>
     {
         private readonly IRecipeFactory _recipeFactory;
         private readonly IRecipeRepository _recipeRepository;

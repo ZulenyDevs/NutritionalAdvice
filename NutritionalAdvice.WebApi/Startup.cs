@@ -12,9 +12,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using NutritionalAdvice.Infrastructure;
+using System.Diagnostics.CodeAnalysis;
 
 namespace NutritionalAdvice.WebApi
 {
+    [ExcludeFromCodeCoverage]
     public class Startup
     {
         public Startup(IConfiguration configuration)

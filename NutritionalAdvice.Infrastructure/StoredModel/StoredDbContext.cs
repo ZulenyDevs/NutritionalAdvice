@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace NutritionalAdvice.Infrastructure.StoredModel
 {
-    internal class StoredDbContext : DbContext
+    public class StoredDbContext : DbContext
     {
-        public DbSet<IngredientStoredModel> Ingredient { get; set; }
-        public DbSet<RecipeStoredModel> Recipe { get; set; }
+        public virtual DbSet<IngredientStoredModel> Ingredient { get; set; }
+        public virtual DbSet<RecipeStoredModel> Recipe { get; set; }
         public DbSet<RecipeIngredientStoredModel> RecipeIngredient { get; set; }
-        public DbSet<MealPlanStoredModel> MealPlan { get; set; }
+        public virtual DbSet<MealPlanStoredModel> MealPlan { get; set; }
         public DbSet<MealTimeStoredModel> MealTime { get; set; }
 
         public StoredDbContext(DbContextOptions<StoredDbContext> options) : base(options)

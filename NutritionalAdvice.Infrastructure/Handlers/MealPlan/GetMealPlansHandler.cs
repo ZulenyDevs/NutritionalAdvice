@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace NutritionalAdvice.Infrastructure.Handlers.MealPlan
 {
-    internal class GetRecipeByIdHandler : IRequestHandler<GetMealPlansQuery, IEnumerable<MealPlanDto>>
+    public class GetMealPlansHandler : IRequestHandler<GetMealPlansQuery, IEnumerable<MealPlanDto>>
     {
         private readonly StoredDbContext _dbContext;
 
-        public GetRecipeByIdHandler(StoredDbContext dbContext)
+        public GetMealPlansHandler(StoredDbContext dbContext)
         {
             _dbContext = dbContext;
         }

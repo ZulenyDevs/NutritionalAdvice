@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace NutritionalAdvice.Infrastructure.Handlers.Recipe
 {
-    internal class GetRecipeByIdHandler : IRequestHandler<GetRecipeByIdQuery, RecipeDto>
+    public class GetRecipeByIdHandler : IRequestHandler<GetRecipeByIdQuery, RecipeDto>
     {
         private readonly StoredDbContext _dbContext;
 
