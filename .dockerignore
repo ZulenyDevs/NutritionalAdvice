@@ -1,6 +1,7 @@
 # Ignora los archivos y carpetas que no necesitas en la imagen Docker
 **/.dockerignore
 **/.git
+**/.github
 **/.vs
 **/bin
 **/obj
@@ -12,3 +13,5 @@
 **/*.user
 **/*.suo
 **/*.lock.json
+
+**/NutritionalAdvice.Test
