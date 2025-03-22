@@ -11,9 +11,7 @@ services:
       - db_service  # Asegura que MySQL se inicie antes que el microservicio
   # Servicio para la base de datos MySQL
   db_service:
-    build:
-      context: .
-      dockerfile: dockerfile-mysql-ini
+    image: zulenycr/nutritionaladvice-db
     container_name: db_service
     environment:
       - MYSQL_ROOT_PASSWORD=11235813.zZ
