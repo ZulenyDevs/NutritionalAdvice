@@ -1,0 +1,29 @@
+services:
+  nutritionaladvice-microservice:
+    image: zulenycr/nutritionaladvice-microservice
+    container_name: nutritionaladvice-microservice
+    ports:
+      - "5002:5000"  # Expone el puerto 5000 del contenedor en el puerto 5000 del host
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=db-service;Database=NutritionalAdvice;User=nutritionaladvice_user;Password=11235813.zZ;
+    depends_on:
+      - db-service  # Asegura que MySQL se inicie antes que el microservicio
+
+  # Servicio para la base de datos MySQL
+  db-service:
+    image: mysql:5.7  # Usa la imagen oficial de MySQL 5.7
+    container_name: db-service
+    environment:
+      - MYSQL_ROOT_PASSWORD=11235813.zZ
+      - MYSQL_DATABASE=NutritionalAdvice
+      - MYSQL_USER=nutritionaladvice_user
+      - MYSQL_PASSWORD=11235813.zZ
+    ports:
+      - "3307:3306"  # Expone el puerto 3306 del contenedor en el puerto 3306 del host
+    volumes:
+      - mysql_data:/var/lib/mysql  # Persiste los datos de la base de datos
+
+# Volumen para persistir los datos de MySQL
+volumes:
+  mysql_data:
