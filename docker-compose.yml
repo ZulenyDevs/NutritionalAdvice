@@ -1,8 +1,6 @@
 services:
   nutritionaladvice-microservice:
-    build:
-      context: .
-      dockerfile: dockerfile
+    image: zulenycr/nutritionaladvice-microservice
     container_name: nutritionaladvice-microservice
     ports:
       - "5002:5000"  # Expone el puerto 5000 del contenedor en el puerto 5000 del host
