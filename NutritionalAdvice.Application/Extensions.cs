@@ -11,21 +11,21 @@ using System.Threading.Tasks;
 
 namespace NutritionalAdvice.Application
 {
-    public static class Extensions
-    {
-        public static IServiceCollection AddAplication(this IServiceCollection services)
-        {
-            services.AddMediatR(config =>
-                config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly())
-            );
+	public static class Extensions
+	{
+		public static IServiceCollection AddAplication(this IServiceCollection services)
+		{
+			services.AddMediatR(config =>
+				config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly())
+			);
 
-            services.AddSingleton<IMealPlanFactory, MealPlanFactory>();
-            services.AddSingleton<IRecipeFactory, RecipeFactory>();
-            services.AddSingleton<IIngredientFactory, IngredientFactory>();
+			services.AddSingleton<IMealPlanFactory, MealPlanFactory>();
+			services.AddSingleton<IRecipeFactory, RecipeFactory>();
+			services.AddSingleton<IIngredientFactory, IngredientFactory>();
 
 
-            return services;
-        }
+			return services;
+		}
 
-    }
+	}
 }

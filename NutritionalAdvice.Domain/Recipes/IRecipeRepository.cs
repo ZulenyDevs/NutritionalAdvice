@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace NutritionalAdvice.Domain.Recipes
 {
-    public interface IRecipeRepository : IRepository<Recipe>
-    {
-        Task UpdateAsync(Recipe recipe);
-        Task DeleteAsync(Guid id);
-    }
+	public interface IRecipeRepository : IRepository<Recipe>
+	{
+		Task UpdateAsync(Recipe recipe);
+		Task DeleteAsync(Guid id);
+	}
 }

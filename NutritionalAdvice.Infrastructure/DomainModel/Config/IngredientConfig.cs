@@ -10,29 +10,29 @@ using System.Threading.Tasks;
 
 namespace NutritionalAdvice.Infrastructure.DomainModel.Config
 {
-    [ExcludeFromCodeCoverage]
-    internal class IngredientConfig : IEntityTypeConfiguration<Ingredient>
-    {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Ingredient> builder)
-        {
-            builder.ToTable("ingredient");
+	[ExcludeFromCodeCoverage]
+	internal class IngredientConfig : IEntityTypeConfiguration<Ingredient>
+	{
+		public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Ingredient> builder)
+		{
+			builder.ToTable("ingredient");
 
-            builder.HasKey(x => x.Id);
+			builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.Id)
-                .HasColumnName("Id");
+			builder.Property(x => x.Id)
+				.HasColumnName("Id");
 
-            builder.Property(x => x.Name)
-                .HasColumnName("Name");
+			builder.Property(x => x.Name)
+				.HasColumnName("Name");
 
-            builder.Property(x => x.Variety)
-                .HasColumnName("Variety");
+			builder.Property(x => x.Variety)
+				.HasColumnName("Variety");
 
-            builder.Property(x => x.Benefits)
-                .HasColumnName("Benefits");
+			builder.Property(x => x.Benefits)
+				.HasColumnName("Benefits");
 
-            builder.Property(x => x.DishCategory)
-                .HasColumnName("DishCategory");
-        }
-    }
+			builder.Property(x => x.DishCategory)
+				.HasColumnName("DishCategory");
+		}
+	}
 }

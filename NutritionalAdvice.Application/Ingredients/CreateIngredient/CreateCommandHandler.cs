@@ -10,29 +10,29 @@ using System.Threading.Tasks;
 
 namespace NutritionalAdvice.Application.Ingredients.CreateIngredient
 {
-    public class CreateCommandHandler : IRequestHandler<CreateIngredientCommand, Guid>
-    {
-        private readonly IIngredientFactory _ingredientFactory;
-        private readonly IIngredientRepository _ingredientRepository;
-        private readonly IUnitOfWork _unitOfWork;
+	public class CreateCommandHandler : IRequestHandler<CreateIngredientCommand, Guid>
+	{
+		private readonly IIngredientFactory _ingredientFactory;
+		private readonly IIngredientRepository _ingredientRepository;
+		private readonly IUnitOfWork _unitOfWork;
 
-        public CreateCommandHandler(IIngredientFactory ingredientFactory,
-            IIngredientRepository ingredientRepository,
-            IUnitOfWork unitOfWork)
-        {
-            _ingredientFactory = ingredientFactory;
-            _ingredientRepository = ingredientRepository;
-            _unitOfWork = unitOfWork;
-        }
-        public async Task<Guid> Handle(CreateIngredientCommand request, CancellationToken cancellationToken)
-        {
-            var ingredient = _ingredientFactory.Create(request.name, request.variety, request.benefits, request.dishCategory);
+		public CreateCommandHandler(IIngredientFactory ingredientFactory,
+			IIngredientRepository ingredientRepository,
+			IUnitOfWork unitOfWork)
+		{
+			_ingredientFactory = ingredientFactory;
+			_ingredientRepository = ingredientRepository;
+			_unitOfWork = unitOfWork;
+		}
+		public async Task<Guid> Handle(CreateIngredientCommand request, CancellationToken cancellationToken)
+		{
+			var ingredient = _ingredientFactory.Create(request.name, request.variety, request.benefits, request.dishCategory);
 
-            await _ingredientRepository.AddAsync(ingredient);
+			await _ingredientRepository.AddAsync(ingredient);
 
-            await _unitOfWork.CommitAsync(cancellationToken);
+			await _unitOfWork.CommitAsync(cancellationToken);
 
-            return ingredient.Id;
-        }
-    }
+			return ingredient.Id;
+		}
+	}
 }

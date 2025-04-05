@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace NutritionalAdvice.Domain.Abstractions
 {
-    public interface IUnitOfWork
-    {
-        Task CommitAsync(CancellationToken cancellationToken = default);
-    }
+	public interface IUnitOfWork
+	{
+		Task CommitAsync(CancellationToken cancellationToken = default);
+	}
 }

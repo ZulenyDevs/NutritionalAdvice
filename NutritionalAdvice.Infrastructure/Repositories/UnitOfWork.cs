@@ -9,19 +9,19 @@ using System.Threading.Tasks;
 
 namespace NutritionalAdvice.Infrastructure.Repositories
 {
-    internal class UnitOfWork : IUnitOfWork
-    {
-        private readonly DomainDbContext _dbContext;
+	internal class UnitOfWork : IUnitOfWork
+	{
+		private readonly DomainDbContext _dbContext;
 
-        public UnitOfWork(DomainDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
+		public UnitOfWork(DomainDbContext dbContext)
+		{
+			_dbContext = dbContext;
+		}
 
-        public async Task CommitAsync(CancellationToken cancellationToken = default)
-        {
-            await _dbContext.SaveChangesAsync(cancellationToken);
-        }
+		public async Task CommitAsync(CancellationToken cancellationToken = default)
+		{
+			await _dbContext.SaveChangesAsync(cancellationToken);
+		}
 
-    }
+	}
 }

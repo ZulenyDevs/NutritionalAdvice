@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace NutritionalAdvice.WebApi.Controllers
 {
-    [ApiController]
-    [Route("/")]
-    public class HomeController : Controller
-    {
-        [HttpGet]
-        public IActionResult Get()
-        {
-            return Redirect("/swagger");
-        }
-    }
+	[ApiController]
+	[Route("/")]
+	public class HomeController : Controller
+	{
+		[HttpGet]
+		public IActionResult Get()
+		{
+			return Redirect("/swagger");
+		}
+	}
 }

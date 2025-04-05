@@ -17,10 +17,10 @@ using Xunit;
 
 namespace NutritionalAdvice.Test.Infrastructure
 {
-    public class ExtensionsTest
-    {
-        
+	public class ExtensionsTest
+	{
 
 
-    }
+
+	}
 }

@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 
 namespace NutritionalAdvice.Application.MealPlans.GetMealPlans
 {
-    public record GetMealPlansQuery(string SearchTerm) : IRequest<IEnumerable<MealPlanDto>>;
+	public record GetMealPlansQuery(string SearchTerm) : IRequest<IEnumerable<MealPlanDto>>;
 }

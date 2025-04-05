@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace NutritionalAdvice.Domain.Abstractions
 {
-    public abstract class AggregateRoot : Entity
-    {
-        protected AggregateRoot(Guid id) : base(id)
-        {
-        }
-    }
+	public abstract class AggregateRoot : Entity
+	{
+		protected AggregateRoot(Guid id) : base(id)
+		{
+		}
+	}
 }

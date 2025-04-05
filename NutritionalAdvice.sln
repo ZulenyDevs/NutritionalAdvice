@@ -11,7 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NutritionalAdvice.Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NutritionalAdvice.WebApi", "NutritionalAdvice.WebApi\NutritionalAdvice.WebApi.csproj", "{CFFE4475-23D0-4E84-86E7-5A19EC6B1F7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NutritionalAdvice.Test", "NutritionalAdvice.Test\NutritionalAdvice.Test.csproj", "{9832CE43-1593-4DEB-A678-DE440D60B03A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NutritionalAdvice.Test", "NutritionalAdvice.Test\NutritionalAdvice.Test.csproj", "{9832CE43-1593-4DEB-A678-DE440D60B03A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{164F7C80-F5EB-438B-AFB7-975E181B8287}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

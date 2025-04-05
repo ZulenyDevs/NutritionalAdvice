@@ -12,44 +12,44 @@ using Xunit;
 
 namespace NutritionalAdvice.Test.Application.Ingredients.CreateIngredient
 {
-    public class CreateCommandHandlerTest
-    {
-        private readonly Mock<IIngredientFactory> _ingredientFactory;
-        private readonly Mock<IIngredientRepository> _ingredientRepository;
-        private readonly Mock<IUnitOfWork> _unitOfWork;
+	public class CreateCommandHandlerTest
+	{
+		private readonly Mock<IIngredientFactory> _ingredientFactory;
+		private readonly Mock<IIngredientRepository> _ingredientRepository;
+		private readonly Mock<IUnitOfWork> _unitOfWork;
 
-        public CreateCommandHandlerTest()
-        {
-            _ingredientFactory = new Mock<IIngredientFactory>();
-            _ingredientRepository = new Mock<IIngredientRepository>();
-            _unitOfWork = new Mock<IUnitOfWork>();
-        }
+		public CreateCommandHandlerTest()
+		{
+			_ingredientFactory = new Mock<IIngredientFactory>();
+			_ingredientRepository = new Mock<IIngredientRepository>();
+			_unitOfWork = new Mock<IUnitOfWork>();
+		}
 
-        [Fact]
-        public async Task HandleIsValid()
-        {
-            // arrange
-            string name = "Tomate";
-            string variety = "Chery";
-            string benefits = "Posee propiedades diuréticas, antiinflamatorias, antioxidantes, anticancerígenas, digestivas, entre otras";
-            string dishCategory = "ensaladas";
-            Ingredient ingredient = new Ingredient(name, variety, benefits, dishCategory);
+		[Fact]
+		public async Task HandleIsValid()
+		{
+			// arrange
+			string name = "Tomate";
+			string variety = "Chery";
+			string benefits = "Posee propiedades diuréticas, antiinflamatorias, antioxidantes, anticancerígenas, digestivas, entre otras";
+			string dishCategory = "ensaladas";
+			Ingredient ingredient = new Ingredient(name, variety, benefits, dishCategory);
 
-            _ingredientFactory.Setup(x => x.Create(name, variety, benefits, dishCategory)).Returns(ingredient);
+			_ingredientFactory.Setup(x => x.Create(name, variety, benefits, dishCategory)).Returns(ingredient);
 
-            CreateCommandHandler createCommandHandler = new CreateCommandHandler(_ingredientFactory.Object, _ingredientRepository.Object, _unitOfWork.Object);
+			CreateCommandHandler createCommandHandler = new CreateCommandHandler(_ingredientFactory.Object, _ingredientRepository.Object, _unitOfWork.Object);
 
-            CreateIngredientCommand createIngredientCommand = new CreateIngredientCommand(name, variety, benefits, dishCategory);
+			CreateIngredientCommand createIngredientCommand = new CreateIngredientCommand(name, variety, benefits, dishCategory);
 
-            var tcs = new CancellationTokenSource(1000);
+			var tcs = new CancellationTokenSource(1000);
 
-            // act
-            await createCommandHandler.Handle(createIngredientCommand, tcs.Token);
+			// act
+			await createCommandHandler.Handle(createIngredientCommand, tcs.Token);
 
-            // assert
-            _ingredientRepository.Verify(x => x.AddAsync(It.IsAny<Ingredient>()), Times.Once);
-            _unitOfWork.Verify(x => x.CommitAsync(tcs.Token), Times.Once);
+			// assert
+			_ingredientRepository.Verify(x => x.AddAsync(It.IsAny<Ingredient>()), Times.Once);
+			_unitOfWork.Verify(x => x.CommitAsync(tcs.Token), Times.Once);
 
-        }
-    }
+		}
+	}
 }

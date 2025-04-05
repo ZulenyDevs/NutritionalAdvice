@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 
 namespace NutritionalAdvice.Application.Ingredients.CreateIngredient
 {
-    public record CreateIngredientCommand(string name, string variety, string benefits, string dishCategory) : IRequest<Guid>;
+	public record CreateIngredientCommand(string name, string variety, string benefits, string dishCategory) : IRequest<Guid>;
 }

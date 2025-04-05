@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace NutritionalAdvice.Domain.MealPlans
 {
-    public interface IMealPlanRepository : IRepository<MealPlan>
-    {
-        Task UpdateAsync(MealPlan mealPlan);
-        Task DeleteAsync(Guid id);
-    }
+	public interface IMealPlanRepository : IRepository<MealPlan>
+	{
+		Task UpdateAsync(MealPlan mealPlan);
+		Task DeleteAsync(Guid id);
+	}
 }

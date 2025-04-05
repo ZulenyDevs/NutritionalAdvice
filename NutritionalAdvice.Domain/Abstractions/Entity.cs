@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace NutritionalAdvice.Domain.Abstractions
 {
-    public abstract class Entity
-    {
-        public Guid Id { get; protected set; }
+	public abstract class Entity
+	{
+		public Guid Id { get; protected set; }
 
-        public Entity(Guid id)
-        {
-            if (id == Guid.Empty)
-            {
-                throw new ArgumentException("Id cannot be empty", nameof(id));
-            }
-            Id = id;
-        }
-    }
+		public Entity(Guid id)
+		{
+			if (id == Guid.Empty)
+			{
+				throw new ArgumentException("Id cannot be empty", nameof(id));
+			}
+			Id = id;
+		}
+	}
 }

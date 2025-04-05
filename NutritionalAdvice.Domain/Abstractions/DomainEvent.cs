@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NutritionalAdvice.Domain.Abstractions
 {
-    public abstract class DomainEvent
-    {
-    }
+	public abstract class DomainEvent
+	{
+	}
 }

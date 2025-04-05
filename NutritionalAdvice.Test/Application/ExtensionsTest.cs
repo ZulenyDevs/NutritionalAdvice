@@ -13,36 +13,36 @@ using Xunit;
 
 namespace NutritionalAdvice.Test.Application
 {
-    public class ExtensionsTest
-    {
-        [Fact]
-        public void AddApplication_ShouldRegisterRequiredServices()
-        {
-            // Arrange
-            var services = new ServiceCollection();
+	public class ExtensionsTest
+	{
+		[Fact]
+		public void AddApplication_ShouldRegisterRequiredServices()
+		{
+			// Arrange
+			var services = new ServiceCollection();
 
-            // Act
-            services.AddAplication(); // Llamamos al método que estamos probando
-            var serviceProvider = services.BuildServiceProvider();
+			// Act
+			services.AddAplication(); // Llamamos al método que estamos probando
+			var serviceProvider = services.BuildServiceProvider();
 
-            // Assert
-            // Verificar que MediatR fue registrado
-            var mediator = serviceProvider.GetService<IMediator>();
-            Assert.NotNull(mediator);
+			// Assert
+			// Verificar que MediatR fue registrado
+			var mediator = serviceProvider.GetService<IMediator>();
+			Assert.NotNull(mediator);
 
-            // Verificar que las fábricas fueron registradas como Singleton
-            Assert.True(IsRegisteredAsSingleton<IMealPlanFactory, MealPlanFactory>(services));
-            Assert.True(IsRegisteredAsSingleton<IRecipeFactory, RecipeFactory>(services));
-            Assert.True(IsRegisteredAsSingleton<IIngredientFactory, IngredientFactory>(services));
-        }
+			// Verificar que las fábricas fueron registradas como Singleton
+			Assert.True(IsRegisteredAsSingleton<IMealPlanFactory, MealPlanFactory>(services));
+			Assert.True(IsRegisteredAsSingleton<IRecipeFactory, RecipeFactory>(services));
+			Assert.True(IsRegisteredAsSingleton<IIngredientFactory, IngredientFactory>(services));
+		}
 
-        // Método auxiliar para verificar si un servicio está registrado como Singleton
-        private bool IsRegisteredAsSingleton<TInterface, TImplementation>(IServiceCollection services)
-        {
-            var descriptor = services.FirstOrDefault(d => d.ServiceType == typeof(TInterface));
-            return descriptor != null &&
-                   descriptor.Lifetime == ServiceLifetime.Singleton &&
-                   descriptor.ImplementationType == typeof(TImplementation);
-        }
-    }
+		// Método auxiliar para verificar si un servicio está registrado como Singleton
+		private bool IsRegisteredAsSingleton<TInterface, TImplementation>(IServiceCollection services)
+		{
+			var descriptor = services.FirstOrDefault(d => d.ServiceType == typeof(TInterface));
+			return descriptor != null &&
+				   descriptor.Lifetime == ServiceLifetime.Singleton &&
+				   descriptor.ImplementationType == typeof(TImplementation);
+		}
+	}
 }

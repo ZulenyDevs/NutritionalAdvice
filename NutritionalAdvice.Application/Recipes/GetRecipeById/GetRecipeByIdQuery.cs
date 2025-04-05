@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 
 namespace NutritionalAdvice.Application.Recipes.GetRecipeById
 {
-    public record GetRecipeByIdQuery(Guid Id) : IRequest<RecipeDto>;
+	public record GetRecipeByIdQuery(Guid Id) : IRequest<RecipeDto>;
 }
