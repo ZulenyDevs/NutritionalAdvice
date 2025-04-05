@@ -112,3 +112,5 @@ dotnet_style_qualification_for_property = false:suggestion
 
 [*.{cs,vb}]
 indent_style=tab
+tab_width=4
+indent_size=2
