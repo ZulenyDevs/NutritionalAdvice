@@ -13,7 +13,6 @@ namespace NutritionalAdvice.WebApi.Controllers
 		[HttpGet]
 		public IActionResult Get()
 		{
-			// adding extra
 			return Redirect("/swagger");
 		}
 	}
