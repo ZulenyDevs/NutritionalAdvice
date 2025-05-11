@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NutritionalAdvice.Application.MealPlans.CreateMealPlan;
 using NutritionalAdvice.Application.MealPlans.GetMealPlans;
+using Sentry;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,7 @@ namespace NutritionalAdvice.WebApi.Controllers
 			}
 			catch (Exception ex)
 			{
+				SentrySdk.CaptureException(ex);
 				return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
 			}
 		}
@@ -47,6 +49,7 @@ namespace NutritionalAdvice.WebApi.Controllers
 			}
 			catch (Exception ex)
 			{
+				SentrySdk.CaptureException(ex);
 				return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
 			}
 		}
