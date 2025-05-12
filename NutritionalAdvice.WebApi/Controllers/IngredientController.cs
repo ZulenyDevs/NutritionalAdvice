@@ -42,8 +42,16 @@ namespace NutritionalAdvice.WebApi.Controllers
 		[HttpGet]
 		public async Task<ActionResult> GetItems()
 		{
-			var result = await _mediator.Send(new GetIngredientsQuery(""));
-			return Ok(result);
+			try
+			{
+				var result = await _mediator.Send(new GetIngredientsQuery(""));
+				return Ok(result);
+			}
+			catch (Exception ex)
+			{
+				SentrySdk.CaptureException(ex);
+				return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+			}
 		}
 	}
 }
