@@ -7,7 +7,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=Server=db_service;Database=NutritionalAdvice;User=nutritionaladvice_user;Password=11235813.zZ
-      - RabbitMqSettings__Host=rabbitmq
+      - RabbitMqSettings__Host=host.docker.internal
       - RabbitMqSettings__UserName=storeUser
       - RabbitMqSettings__Passwordt=storeUserPassword
       - RabbitMqSettings__VirtualHost=/
