@@ -18,7 +18,7 @@ namespace NutritionalAdvice.Infrastructure.Extensions
 			var rabbitMqSettings = serviceProvider.GetRequiredService<RabbitMqSettings>();
 
 			services.AddRabbitMQ(rabbitMqSettings)
-				.AddRabbitMqConsumer<DiagnosticPerformed, DiagnosticPerformedConsumer>("nutritionaladvice-diagnostic-performed");
+				.AddRabbitMqConsumer<DiagnosticPerformed, DiagnosticPerformedConsumer>("plan-diagnosticos-realizados");
 
 			return services;
 		}

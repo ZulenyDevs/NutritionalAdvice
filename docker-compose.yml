@@ -1,14 +1,20 @@
 services:
   nutritionaladvice-microservice:
-    image: zulenycr/nutritionaladvice-microservice
+    image: zulenycr/nutritionaladvice-microservice:v7
     container_name: nutritionaladvice-microservice
     ports:
       - "5002:5000"  # Expone el puerto 5000 del contenedor en el puerto 5000 del host
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Server=db_service;Database=NutritionalAdvice;User=nutritionaladvice_user;Password=11235813.zZ;
+      - ConnectionStrings__DefaultConnection=Server=db_service;Database=NutritionalAdvice;User=nutritionaladvice_user;Password=11235813.zZ
+      - RabbitMqSettings__Host=rabbitmq
+      - RabbitMqSettings__UserName=storeUser
+      - RabbitMqSettings__Passwordt=storeUserPassword
+      - RabbitMqSettings__VirtualHost=/
     depends_on:
       - db_service  # Asegura que MySQL se inicie antes que el microservicio
+    networks:
+      - nur-network
   # Servicio para la base de datos MySQL
   db_service:
     image: zulenycr/nutritionaladvice-db
@@ -27,7 +33,12 @@ services:
       interval: 10s
       retries: 5
       start_period: 20s
+    networks:
+      - nur-network
 
+networks:
+  nur-network:
+    driver: bridge
 # Volumen para persistir los datos de MySQL
 volumes:
   mysql_data:

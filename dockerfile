@@ -1,12 +1,12 @@
-# Usa la imagen base de .NET 5.0 SDK para compilar la aplicación
-FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
+# Usa la imagen base de .NET 8.0 SDK para compilar la aplicación
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
 ENV ASPNETCORE_URLS=http://+:5000
 ENV ASPNETCORE_ENVIRONMENT=Development
 EXPOSE 5000
 
 # Usa la imagen de SDK para compilar la aplicación
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 # Copia los archivos de la solución y restaura las dependencias
@@ -14,6 +14,7 @@ WORKDIR /src
 COPY ["NutritionalAdvice.sln", "."]
 COPY ["NutritionalAdvice.Domain/NutritionalAdvice.Domain.csproj", "NutritionalAdvice.Domain/"]
 COPY ["NutritionalAdvice.Application/NutritionalAdvice.Application.csproj", "NutritionalAdvice.Application/"]
+COPY ["NutritionalAdvice.Integration/NutritionalAdvice.Integration.csproj", "NutritionalAdvice.Integration/"]
 COPY ["NutritionalAdvice.Infrastructure/NutritionalAdvice.Infrastructure.csproj", "NutritionalAdvice.Infrastructure/"]
 COPY ["NutritionalAdvice.WebApi/NutritionalAdvice.WebApi.csproj", "NutritionalAdvice.WebApi/"]
 

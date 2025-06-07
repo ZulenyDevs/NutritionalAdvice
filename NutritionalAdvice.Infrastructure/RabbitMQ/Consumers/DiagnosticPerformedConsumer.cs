@@ -13,8 +13,8 @@ namespace NutritionalAdvice.Infrastructure.RabbitMQ.Consumers
 		public async Task HandleAsync(DiagnosticPerformed message, CancellationToken cancellationToken)
 		{
 			CreateMealPlanCommand command = new(
-				$"Plan Alimenticio - {message.PatientName}",
-				"",
+				$"Plan Alimenticio - {message.PatientId}",
+				message.DiagnosticDescription,
 				"",
 				0,
 				0,

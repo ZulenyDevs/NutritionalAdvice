@@ -16,7 +16,7 @@ namespace NutritionalAdvice.Infrastructure.Extensions
 
 		public static IServiceCollection AddSecrets(this IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
 		{
-			bool useSecretManager = configuration.GetValue<bool>("UseSecretManager", false);
+			bool useSecretManager = false;//configuration.GetValue<bool>("UseSecretManager", false);
 			if (environment.IsDevelopment() && !useSecretManager)
 			{
 				configuration
