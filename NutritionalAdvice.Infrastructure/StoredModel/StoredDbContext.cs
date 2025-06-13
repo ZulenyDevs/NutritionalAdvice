@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Joseco.Outbox.EFCore.Persistence;
+using Microsoft.EntityFrameworkCore;
+using NutritionalAdvice.Domain.Abstractions;
+using NutritionalAdvice.Infrastructure.Repositories;
 using NutritionalAdvice.Infrastructure.StoredModel.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace NutritionalAdvice.Infrastructure.StoredModel
 {
-	public class StoredDbContext : DbContext
+	public class StoredDbContext : DbContext, IDatabase
 	{
 		public virtual DbSet<IngredientStoredModel> Ingredient { get; set; }
 		public virtual DbSet<RecipeStoredModel> Recipe { get; set; }
@@ -19,6 +22,17 @@ namespace NutritionalAdvice.Infrastructure.StoredModel
 		public StoredDbContext(DbContextOptions<StoredDbContext> options) : base(options)
 		{
 
+		}
+
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			base.OnModelCreating(modelBuilder);
+			modelBuilder.AddOutboxModel<DomainEvent>();
+		}
+
+		public void Migrate()
+		{
+			Database.Migrate();
 		}
 	}
 }

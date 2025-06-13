@@ -4,47 +4,98 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using NutritionalAdvice.Infrastructure.StoredModel;
+
+#nullable disable
 
 namespace NutritionalAdvice.Infrastructure.Migrations
 {
     [DbContext(typeof(StoredDbContext))]
-    [Migration("20241219054009_CreateDatabase")]
+    [Migration("20250612013835_CreateDatabase")]
     partial class CreateDatabase
     {
+        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 64)
-                .HasAnnotation("ProductVersion", "5.0.17");
+                .HasAnnotation("ProductVersion", "9.0.5")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("Joseco.Outbox.Contracts.Model.OutboxMessage<NutritionalAdvice.Domain.Abstractions.DomainEvent>", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("outboxId");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("text")
+                        .HasColumnName("content");
+
+                    b.Property<string>("CorrelationId")
+                        .HasColumnType("text")
+                        .HasColumnName("correlationId");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created");
+
+                    b.Property<bool>("Processed")
+                        .HasColumnType("boolean")
+                        .HasColumnName("processed");
+
+                    b.Property<DateTime?>("ProcessedOn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("processedOn");
+
+                    b.Property<string>("SpanId")
+                        .HasColumnType("text")
+                        .HasColumnName("spanId");
+
+                    b.Property<string>("TraceId")
+                        .HasColumnType("text")
+                        .HasColumnName("traceId");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("type");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("outboxMessage", "outbox");
+                });
 
             modelBuilder.Entity("NutritionalAdvice.Infrastructure.StoredModel.Entities.IngredientStoredModel", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)")
+                        .HasColumnType("uuid")
                         .HasColumnName("Id");
 
                     b.Property<string>("Benefits")
                         .HasMaxLength(500)
-                        .HasColumnType("varchar(500)")
+                        .HasColumnType("character varying(500)")
                         .HasColumnName("Benefits");
 
                     b.Property<string>("DishCategory")
                         .HasMaxLength(100)
-                        .HasColumnType("varchar(100)")
+                        .HasColumnType("character varying(100)")
                         .HasColumnName("DishCategory");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(250)
-                        .HasColumnType("varchar(250)")
+                        .HasColumnType("character varying(250)")
                         .HasColumnName("Name");
 
                     b.Property<string>("Variety")
                         .HasMaxLength(100)
-                        .HasColumnType("varchar(100)")
+                        .HasColumnType("character varying(100)")
                         .HasColumnName("Variety");
 
                     b.HasKey("Id");
@@ -56,47 +107,47 @@ namespace NutritionalAdvice.Infrastructure.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)")
+                        .HasColumnType("uuid")
                         .HasColumnName("Id");
 
                     b.Property<int>("DailyCalories")
-                        .HasColumnType("int")
+                        .HasColumnType("integer")
                         .HasColumnName("DailyCalories");
 
                     b.Property<double>("DailyCarbohydrates")
-                        .HasColumnType("double")
+                        .HasColumnType("double precision")
                         .HasColumnName("DailyCarbohydrates");
 
                     b.Property<double>("DailyFats")
-                        .HasColumnType("double")
+                        .HasColumnType("double precision")
                         .HasColumnName("DailyFats");
 
                     b.Property<double>("DailyProtein")
-                        .HasColumnType("double")
+                        .HasColumnType("double precision")
                         .HasColumnName("DailyProtein");
 
                     b.Property<string>("Description")
                         .HasMaxLength(256)
-                        .HasColumnType("varchar(256)")
+                        .HasColumnType("character varying(256)")
                         .HasColumnName("Description");
 
                     b.Property<string>("Goal")
                         .HasMaxLength(256)
-                        .HasColumnType("varchar(256)")
+                        .HasColumnType("character varying(256)")
                         .HasColumnName("Goal");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("varchar(100)")
+                        .HasColumnType("character varying(100)")
                         .HasColumnName("Name");
 
                     b.Property<Guid>("NutritionistId")
-                        .HasColumnType("char(36)")
+                        .HasColumnType("uuid")
                         .HasColumnName("NutritionistId");
 
                     b.Property<Guid>("PatientId")
-                        .HasColumnType("char(36)")
+                        .HasColumnType("uuid")
                         .HasColumnName("PatientId");
 
                     b.HasKey("Id");
@@ -108,28 +159,28 @@ namespace NutritionalAdvice.Infrastructure.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)")
+                        .HasColumnType("uuid")
                         .HasColumnName("Id");
 
                     b.Property<Guid>("MealPlanId")
-                        .HasColumnType("char(36)")
+                        .HasColumnType("uuid")
                         .HasColumnName("MealPlanId");
 
                     b.Property<Guid?>("MealPlanStoredModelId")
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uuid");
 
                     b.Property<int>("Number")
-                        .HasColumnType("int")
+                        .HasColumnType("integer")
                         .HasColumnName("Number");
 
                     b.Property<Guid>("RecipeId")
-                        .HasColumnType("char(36)")
+                        .HasColumnType("uuid")
                         .HasColumnName("RecipeId");
 
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("varchar(50)")
+                        .HasColumnType("character varying(50)")
                         .HasColumnName("Type");
 
                     b.HasKey("Id");
@@ -143,28 +194,28 @@ namespace NutritionalAdvice.Infrastructure.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)")
+                        .HasColumnType("uuid")
                         .HasColumnName("Id");
 
                     b.Property<Guid>("IngredientId")
-                        .HasColumnType("char(36)")
+                        .HasColumnType("uuid")
                         .HasColumnName("IngredientId");
 
                     b.Property<double>("Quantity")
-                        .HasColumnType("double")
+                        .HasColumnType("double precision")
                         .HasColumnName("Quantity");
 
                     b.Property<Guid>("RecipeId")
-                        .HasColumnType("char(36)")
+                        .HasColumnType("uuid")
                         .HasColumnName("RecipeId");
 
                     b.Property<Guid?>("RecipeStoredModelId")
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("UnitOfMeasure")
                         .IsRequired()
                         .HasMaxLength(10)
-                        .HasColumnType("varchar(10)")
+                        .HasColumnType("character varying(10)")
                         .HasColumnName("UnitOfMeasure");
 
                     b.HasKey("Id");
@@ -178,34 +229,34 @@ namespace NutritionalAdvice.Infrastructure.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)")
+                        .HasColumnType("uuid")
                         .HasColumnName("Id");
 
                     b.Property<int>("CookingTime")
-                        .HasColumnType("int")
+                        .HasColumnType("integer")
                         .HasColumnName("CookingTime");
 
                     b.Property<string>("Description")
                         .HasMaxLength(256)
-                        .HasColumnType("varchar(256)")
+                        .HasColumnType("character varying(256)")
                         .HasColumnName("Description");
 
                     b.Property<string>("Instructions")
-                        .HasColumnType("longtext")
+                        .HasColumnType("text")
                         .HasColumnName("Instructions");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(250)
-                        .HasColumnType("varchar(250)")
+                        .HasColumnType("character varying(250)")
                         .HasColumnName("Name");
 
                     b.Property<int>("Portions")
-                        .HasColumnType("int")
+                        .HasColumnType("integer")
                         .HasColumnName("Portions");
 
                     b.Property<int>("PreparationTime")
-                        .HasColumnType("int")
+                        .HasColumnType("integer")
                         .HasColumnName("PreparationTime");
 
                     b.HasKey("Id");

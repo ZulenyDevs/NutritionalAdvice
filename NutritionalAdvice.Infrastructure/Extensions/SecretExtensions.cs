@@ -17,7 +17,7 @@ namespace NutritionalAdvice.Infrastructure.Extensions
 		public static IServiceCollection AddSecrets(this IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
 		{
 			bool useSecretManager = false;//configuration.GetValue<bool>("UseSecretManager", false);
-			if (environment.IsDevelopment() && !useSecretManager)
+			if (!useSecretManager)
 			{
 				configuration
 					.LoadAndRegister<RabbitMqSettings>(services, RabbitMqSettingsSecretName);

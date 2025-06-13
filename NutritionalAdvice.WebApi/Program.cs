@@ -13,8 +13,9 @@ using System.Threading.Tasks;
 
 var builder = WebApplication.CreateBuilder(args);
 
+string serviceName = "nutritionaladvice.api";
 // Add services to the container.
-builder.Services.AddInfrastructure(builder.Configuration, builder.Environment);
+builder.Services.AddInfrastructure(builder.Configuration, builder.Environment, serviceName);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

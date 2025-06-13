@@ -1,12 +1,12 @@
 services:
   nutritionaladvice-microservice:
-    image: zulenycr/nutritionaladvice-microservice:v7
+    image: zulenycr/nutritionaladvice-microservice:v8
     container_name: nutritionaladvice-microservice
     ports:
       - "5002:5000"  # Expone el puerto 5000 del contenedor en el puerto 5000 del host
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Server=db_service;Database=NutritionalAdvice;User=nutritionaladvice_user;Password=11235813.zZ
+      - ConnectionStrings__DefaultConnection=Host=db_service;Database=NutritionalAdvice;Username=nutritionaladvice_user;Password=11235813.zZ
       - RabbitMqSettings__Host=host.docker.internal
       - RabbitMqSettings__UserName=storeUser
       - RabbitMqSettings__Passwordt=storeUserPassword
@@ -17,19 +17,18 @@ services:
       - nur-network
   # Servicio para la base de datos MySQL
   db_service:
-    image: zulenycr/nutritionaladvice-db
+    image: zulenycr/nutritionaladvice-db:v2
     container_name: db_service
     environment:
-      - MYSQL_ROOT_PASSWORD=11235813.zZ
-      - MYSQL_DATABASE=NutritionalAdvice
-      - MYSQL_USER=nutritionaladvice_user
-      - MYSQL_PASSWORD=11235813.zZ
+      - POSTGRES_DB=NutritionalAdvice
+      - POSTGRES_USER=nutritionaladvice_user
+      - POSTGRES_PASSWORD=11235813.zZ
     ports:
-      - "3308:3306"  # Expone el puerto 3306 del contenedor en el puerto 3306 del host
+      - "5440:5432"  # Expone el puerto 3306 del contenedor en el puerto 5432 del host
     volumes:
-      - mysql_data:/var/lib/mysql  # Persiste los datos de la base de datos
+      - postgres_data:/var/lib/postgresql/data  # Persiste los datos de la base de datos
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ["CMD", "pg_isready", "-U", "nutritionaladvice_user", "-d", "NutritionalAdvice"]
       interval: 10s
       retries: 5
       start_period: 20s
@@ -41,4 +40,4 @@ networks:
     driver: bridge
 # Volumen para persistir los datos de MySQL
 volumes:
-  mysql_data:
+  postgres_data:

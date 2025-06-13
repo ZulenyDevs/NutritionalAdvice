@@ -31,13 +31,13 @@ namespace NutritionalAdvice.Infrastructure.StoredModel.Entities
 		[Column("DailyCalories")]
 		public int DailyCalories { get; set; }
 
-		[Column("DailyProtein", TypeName = "double")]
+		[Column("DailyProtein", TypeName = "double precision")]
 		public double DailyProtein { get; set; }
 
-		[Column("DailyCarbohydrates", TypeName = "double")]
+		[Column("DailyCarbohydrates", TypeName = "double precision")]
 		public double DailyCarbohydrates { get; set; }
 
-		[Column("DailyFats", TypeName = "double")]
+		[Column("DailyFats", TypeName = "double precision")]
 		public double DailyFats { get; set; }
 
 		[Column("NutritionistId")]

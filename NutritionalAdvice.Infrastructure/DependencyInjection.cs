@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Joseco.Outbox.EFCore;
+using Joseco.Outbox.EFCore.Persistence;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -17,7 +19,7 @@ namespace NutritionalAdvice.Infrastructure
 {
 	public static class DependencyInjection
 	{
-		public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
+		public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration, IHostEnvironment environment, string serviceName)
 		{
 			services.AddMediatR(config =>
 					config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly())
@@ -25,16 +27,16 @@ namespace NutritionalAdvice.Infrastructure
 
 			var connectionString = configuration.GetConnectionString("DefaultConnection");
 			services.AddDbContext<StoredDbContext>(context =>
-					context.UseMySql(connectionString,
-						ServerVersion.AutoDetect(connectionString)));
+					context.UseNpgsql(connectionString));
 			services.AddDbContext<DomainDbContext>(context =>
-					context.UseMySql(connectionString,
-						ServerVersion.AutoDetect(connectionString)));
+					context.UseNpgsql(connectionString));
 
-			services.AddScoped<IIngredientRepository, IngredientRepository>();
-			services.AddScoped<IRecipeRepository, RecipeRepository>();
-			services.AddScoped<IMealPlanRepository, MealPlanRepository>();
-			services.AddScoped<IUnitOfWork, UnitOfWork>();
+			services.AddScoped<IUnitOfWork, UnitOfWork>()
+					.AddScoped<IIngredientRepository, IngredientRepository>()
+					.AddScoped<IRecipeRepository, RecipeRepository>()
+					.AddScoped<IMealPlanRepository, MealPlanRepository>()
+					.AddScoped<IOutboxDatabase<DomainEvent>, UnitOfWork>()
+					.AddOutbox<DomainEvent>();
 
 			services.AddAplication()
 				.AddSecrets(configuration, environment)
