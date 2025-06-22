@@ -1,4 +1,5 @@
 ﻿using NutritionalAdvice.Domain.Abstractions;
+using NutritionalAdvice.Domain.Recipes.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,8 @@ namespace NutritionalAdvice.Domain.Recipes
 			Portions = portions;
 			Instructions = instructions;
 			_recipeIngredients = new List<RecipeIngredient>();
+
+			AddDomainEvent(new RecipeCreated(Id, Name, Description));
 		}
 
 		public void AddRecipeIngredient(double quantity, string unitOfMeasure, Guid recipeId, Guid ingredientId)

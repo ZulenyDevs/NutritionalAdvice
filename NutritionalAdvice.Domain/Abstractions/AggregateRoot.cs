@@ -11,5 +11,9 @@ namespace NutritionalAdvice.Domain.Abstractions
 		protected AggregateRoot(Guid id) : base(id)
 		{
 		}
+
+		protected AggregateRoot()
+		{
+		}
 	}
 }

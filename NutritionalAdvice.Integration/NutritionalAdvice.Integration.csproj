@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Recipe\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Joseco.Communication.External.Contracts" Version="1.0.1" />
   </ItemGroup>
 

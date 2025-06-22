@@ -1,16 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Joseco.Outbox.Contracts" Version="1.0.2" />
     <PackageReference Include="MediatR" Version="12.5.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.5" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\NutritionalAdvice.Domain\NutritionalAdvice.Domain.csproj" />
+    <ProjectReference Include="..\NutritionalAdvice.Integration\NutritionalAdvice.Integration.csproj" />
   </ItemGroup>
 
 </Project>

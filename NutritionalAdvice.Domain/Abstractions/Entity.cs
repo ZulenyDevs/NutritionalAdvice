@@ -10,6 +10,16 @@ namespace NutritionalAdvice.Domain.Abstractions
 	{
 		public Guid Id { get; protected set; }
 
+		private List<DomainEvent> _domainEvents;
+
+		public ICollection<DomainEvent> DomainEvents
+		{
+			get
+			{
+				return _domainEvents;
+			}
+		}
+
 		public Entity(Guid id)
 		{
 			if (id == Guid.Empty)
@@ -17,6 +27,22 @@ namespace NutritionalAdvice.Domain.Abstractions
 				throw new ArgumentException("Id cannot be empty", nameof(id));
 			}
 			Id = id;
+			_domainEvents = new List<DomainEvent>();
+		}
+
+		public void AddDomainEvent(DomainEvent domainEvent)
+		{
+			_domainEvents.Add(domainEvent);
+		}
+
+		public void ClearDomainEvents()
+		{
+			_domainEvents.Clear();
+		}
+
+		protected Entity()
+		{
+			_domainEvents = new List<DomainEvent>();
 		}
 	}
 }
