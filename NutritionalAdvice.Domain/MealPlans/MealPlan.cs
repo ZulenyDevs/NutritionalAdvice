@@ -19,6 +19,7 @@ namespace NutritionalAdvice.Domain.MealPlans
 		public QuantityValue DailyFats { get; private set; }
 		public Guid NutritionistId { get; private set; }
 		public Guid PatientId { get; private set; }
+		public Guid DiagnosticId { get; set; }
 		private List<MealTime> _mealTimes;
 		public ICollection<MealTime> MealTimes
 		{
@@ -28,7 +29,7 @@ namespace NutritionalAdvice.Domain.MealPlans
 			}
 		}
 
-		public MealPlan(string name, string description, string goal, int dailyCalories, Guid nutritionistId, Guid patientId) : base(Guid.NewGuid())
+		public MealPlan(string name, string description, string goal, int dailyCalories, Guid nutritionistId, Guid patientId, Guid diagnosticId) : base(Guid.NewGuid())
 		{
 			Name = name;
 			Description = description;
@@ -39,6 +40,7 @@ namespace NutritionalAdvice.Domain.MealPlans
 			DailyFats = 0;
 			NutritionistId = nutritionistId;
 			PatientId = patientId;
+			DiagnosticId = diagnosticId;
 			_mealTimes = new List<MealTime>();
 		}
 

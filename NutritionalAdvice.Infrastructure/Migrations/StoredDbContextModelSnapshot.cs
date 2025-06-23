@@ -128,6 +128,10 @@ namespace NutritionalAdvice.Infrastructure.Migrations
                         .HasColumnType("character varying(256)")
                         .HasColumnName("Description");
 
+                    b.Property<Guid>("DiagnosticId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("DiagnosticId");
+
                     b.Property<string>("Goal")
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)")

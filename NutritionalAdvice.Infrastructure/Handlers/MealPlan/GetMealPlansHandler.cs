@@ -35,6 +35,7 @@ namespace NutritionalAdvice.Infrastructure.Handlers.MealPlan
 				DailyFats = i.DailyFats,
 				NutritionistId = i.NutritionistId,
 				PatientId = i.PatientId,
+				DiagnosticId = i.DiagnosticId,
 				MealTime = i.MealTime.Select(m => new MealTimeDto {
 					Id = m.Id,
 					Number = m.Number,

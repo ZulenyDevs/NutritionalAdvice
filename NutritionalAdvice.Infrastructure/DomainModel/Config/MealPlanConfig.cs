@@ -62,6 +62,9 @@ namespace NutritionalAdvice.Infrastructure.DomainModel.Config
 			builder.Property(x => x.PatientId)
 				.HasColumnName("PatientId");
 
+			builder.Property(x => x.DiagnosticId)
+				.HasColumnName("DiagnosticId");
+
 			builder.Ignore(x => x.MealTimes);
 		}
 

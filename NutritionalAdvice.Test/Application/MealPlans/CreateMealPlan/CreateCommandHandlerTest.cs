@@ -35,13 +35,14 @@ namespace NutritionalAdvice.Test.Application.MealPlans.CreateMealPlan
 			int dailyCalories = 2000;
 			Guid nutritionistId = Guid.NewGuid();
 			Guid patientId = Guid.NewGuid();
-			MealPlan mealplan = new MealPlan(name, description, goal, dailyCalories, nutritionistId, patientId);
+			Guid diagnosticId = Guid.NewGuid();
+			MealPlan mealplan = new MealPlan(name, description, goal, dailyCalories, nutritionistId, patientId, diagnosticId);
 
-			_mealplanFactory.Setup(x => x.Create(name, description, goal, dailyCalories, 10, 10, 10, nutritionistId, patientId)).Returns(mealplan);
+			_mealplanFactory.Setup(x => x.Create(name, description, goal, dailyCalories, 10, 10, 10, nutritionistId, patientId, diagnosticId)).Returns(mealplan);
 
 			CreateCommandHandler createCommandHandler = new CreateCommandHandler(_mealplanFactory.Object, _mealplanRepository.Object, _unitOfWork.Object);
 
-			CreateMealPlanCommand createMealPlanCommand = new CreateMealPlanCommand(name, description, goal, dailyCalories, 10, 10, 10, nutritionistId, patientId);
+			CreateMealPlanCommand createMealPlanCommand = new CreateMealPlanCommand(name, description, goal, dailyCalories, 10, 10, 10, nutritionistId, patientId, diagnosticId);
 
 			var tcs = new CancellationTokenSource(1000);
 

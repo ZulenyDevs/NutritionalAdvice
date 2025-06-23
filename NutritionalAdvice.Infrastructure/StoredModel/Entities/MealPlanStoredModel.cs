@@ -46,6 +46,9 @@ namespace NutritionalAdvice.Infrastructure.StoredModel.Entities
 		[Column("PatientId")]
 		public Guid PatientId { get; set; }
 
+		[Column("DiagnosticId")]
+		public Guid DiagnosticId { get; set; }
+
 		public List<MealTimeStoredModel> MealTime { get; set; }
 
 	}

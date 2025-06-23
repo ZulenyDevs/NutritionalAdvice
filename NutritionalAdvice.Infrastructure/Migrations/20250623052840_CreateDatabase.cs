@@ -42,7 +42,8 @@ namespace NutritionalAdvice.Infrastructure.Migrations
                     DailyCarbohydrates = table.Column<double>(type: "double precision", nullable: false),
                     DailyFats = table.Column<double>(type: "double precision", nullable: false),
                     NutritionistId = table.Column<Guid>(type: "uuid", nullable: false),
-                    PatientId = table.Column<Guid>(type: "uuid", nullable: false)
+                    PatientId = table.Column<Guid>(type: "uuid", nullable: false),
+                    DiagnosticId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {

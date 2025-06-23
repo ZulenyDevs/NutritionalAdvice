@@ -26,7 +26,7 @@ namespace NutritionalAdvice.Application.MealPlans.CreateMealPlan
 		}
 		public async Task<Guid> Handle(CreateMealPlanCommand request, CancellationToken cancellationToken)
 		{
-			var mealPlan = _mealPlanFactory.Create(request.name, request.description, request.goal, request.dailyCalories, request.dailyProtein, request.dailyCarbohydrates, request.dailyFats, request.nutritionistId, request.patientId);
+			var mealPlan = _mealPlanFactory.Create(request.name, request.description, request.goal, request.dailyCalories, request.dailyProtein, request.dailyCarbohydrates, request.dailyFats, request.nutritionistId, request.patientId, request.diagnosticId);
 
 			await _mealPlanRepository.AddAsync(mealPlan);
 

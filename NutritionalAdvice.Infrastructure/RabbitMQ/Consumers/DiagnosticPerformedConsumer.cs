@@ -21,7 +21,8 @@ namespace NutritionalAdvice.Infrastructure.RabbitMQ.Consumers
 				0,
 				0,
 				Guid.NewGuid(),
-				message.PatientId
+				message.PatientId,
+				message.DiagnosticId
 			);
 
 			await mediator.Send(command, cancellationToken);

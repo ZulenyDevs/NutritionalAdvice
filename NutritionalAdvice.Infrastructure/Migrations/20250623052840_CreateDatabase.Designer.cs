@@ -12,7 +12,7 @@ using NutritionalAdvice.Infrastructure.StoredModel;
 namespace NutritionalAdvice.Infrastructure.Migrations
 {
     [DbContext(typeof(StoredDbContext))]
-    [Migration("20250623042736_CreateDatabase")]
+    [Migration("20250623052840_CreateDatabase")]
     partial class CreateDatabase
     {
         /// <inheritdoc />
@@ -130,6 +130,10 @@ namespace NutritionalAdvice.Infrastructure.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)")
                         .HasColumnName("Description");
+
+                    b.Property<Guid>("DiagnosticId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("DiagnosticId");
 
                     b.Property<string>("Goal")
                         .HasMaxLength(256)

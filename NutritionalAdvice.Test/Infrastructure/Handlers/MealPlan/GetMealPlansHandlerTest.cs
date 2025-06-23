@@ -64,6 +64,7 @@ namespace NutritionalAdvice.Test.Infrastructure.Handlers.MealPlan
 					DailyFats = 50.0,
 					NutritionistId = Guid.NewGuid(),
 					PatientId = Guid.NewGuid(),
+					DiagnosticId = Guid.NewGuid(),
 					MealTime = new List<MealTimeStoredModel>
 					{
 						new MealTimeStoredModel
@@ -104,6 +105,7 @@ namespace NutritionalAdvice.Test.Infrastructure.Handlers.MealPlan
 					DailyFats = 80.0,
 					NutritionistId = Guid.NewGuid(),
 					PatientId = Guid.NewGuid(),
+					DiagnosticId = Guid.NewGuid(),
 					MealTime = new List<MealTimeStoredModel>
 					{
 						new MealTimeStoredModel
