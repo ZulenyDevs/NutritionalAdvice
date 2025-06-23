@@ -26,7 +26,7 @@ namespace NutritionalAdvice.Application.Recipes.CreateRecipe
 		}
 		public async Task<Guid> Handle(CreateRecipeCommand request, CancellationToken cancellationToken)
 		{
-			var recipe = _recipeFactory.Create(request.name, request.description, request.preparationTime, request.cookingTime, request.portions, request.instructions);
+			var recipe = _recipeFactory.Create(request.name, request.description, request.portions);
 
 			await _recipeRepository.AddAsync(recipe);
 

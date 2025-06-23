@@ -24,17 +24,8 @@ namespace NutritionalAdvice.Infrastructure.StoredModel.Entities
 		[StringLength(256)]
 		public string Description { get; set; }
 
-		[Column("PreparationTime")]
-		public int PreparationTime { get; set; }
-
-		[Column("CookingTime")]
-		public int CookingTime { get; set; }
-
 		[Column("Portions")]
 		public int Portions { get; set; }
-
-		[Column("Instructions")]
-		public string Instructions { get; set; }
 
 		public List<RecipeIngredientStoredModel> RecipeIngredients { get; set; }
 

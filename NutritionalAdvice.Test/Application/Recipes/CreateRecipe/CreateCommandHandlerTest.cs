@@ -31,25 +31,15 @@ namespace NutritionalAdvice.Test.Application.Recipes.CreateRecipe
 			// arrange
 			string name = "Espaguetis a la Carbonara";
 			string description = "Un plato clásico italiano hecho con huevos, queso, panceta y pimienta.";
-			int preparationTime = 15;
-			int cookingTime = 20;
 			int portions = 4;
-			List<string> instructions = new()
-			{
-				"1. Hervir los espaguetis.",
-				"2. Cocinar la panceta hasta que esté crujiente.",
-				"3. Mezclar los huevos y el queso en un bol.",
-				"4. Combinar los espaguetis con la panceta y la mezcla de huevo.",
-				"5. Servir con una pizca de pimienta."
-			};
 
-			Recipe recipe = new Recipe(name, description, preparationTime, cookingTime, portions, instructions);
+			Recipe recipe = new Recipe(name, description, portions);
 
-			_recipeFactory.Setup(x => x.Create(name, description, preparationTime, cookingTime, portions, instructions)).Returns(recipe);
+			_recipeFactory.Setup(x => x.Create(name, description, portions)).Returns(recipe);
 
 			CreateCommandHandler createCommandHandler = new CreateCommandHandler(_recipeFactory.Object, _recipeRepository.Object, _unitOfWork.Object);
 
-			CreateRecipeCommand createRecipeCommand = new CreateRecipeCommand(name, description, preparationTime, cookingTime, portions, instructions);
+			CreateRecipeCommand createRecipeCommand = new CreateRecipeCommand(name, description, portions);
 
 			var tcs = new CancellationTokenSource(1000);
 

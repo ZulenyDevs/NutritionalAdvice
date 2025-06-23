@@ -17,28 +17,15 @@ namespace NutritionalAdvice.Test.Domain.Recipes
 			// arrange 
 			string name = "Espaguetis a la Carbonara";
 			string description = "Un plato clásico italiano hecho con huevos, queso, panceta y pimienta.";
-			int preparationTime = 15;
-			int cookingTime = 20;
 			int portions = 4;
-			List<string> instructions = new()
-										{
-				"1. Hervir los espaguetis.",
-				"2. Cocinar la panceta hasta que esté crujiente.",
-				"3. Mezclar los huevos y el queso en un bol.",
-				"4. Combinar los espaguetis con la panceta y la mezcla de huevo.",
-				"5. Servir con una pizca de pimienta."
-			};
 
 			// act
-			Recipe recipe = new Recipe(name, description, preparationTime, cookingTime, portions, instructions);
+			Recipe recipe = new Recipe(name, description, portions);
 
 			// assert
 			Assert.Equal(name, recipe.Name);
 			Assert.Equal(description, recipe.Description);
-			Assert.Equal(preparationTime, recipe.PreparationTime);
-			Assert.Equal(cookingTime, recipe.CookingTime);
 			Assert.Equal(portions, recipe.Portions);
-			Assert.Equal(instructions, recipe.Instructions);
 		}
 
 		[Fact]
@@ -47,19 +34,9 @@ namespace NutritionalAdvice.Test.Domain.Recipes
 			// arrange 
 			string name = "Espaguetis a la Carbonara";
 			string description = "Un plato clásico italiano hecho con huevos, queso, panceta y pimienta.";
-			int preparationTime = 15;
-			int cookingTime = 20;
 			int portions = 4;
-			List<string> instructions = new()
-			{
-				"1. Hervir los espaguetis.",
-				"2. Cocinar la panceta hasta que esté crujiente.",
-				"3. Mezclar los huevos y el queso en un bol.",
-				"4. Combinar los espaguetis con la panceta y la mezcla de huevo.",
-				"5. Servir con una pizca de pimienta."
-			};
 
-			Recipe recipe = new Recipe(name, description, preparationTime, cookingTime, portions, instructions);
+			Recipe recipe = new Recipe(name, description, portions);
 
 			QuantityValue quantity = 10;
 			string unitOfMeasure = "gramos";
@@ -84,17 +61,7 @@ namespace NutritionalAdvice.Test.Domain.Recipes
 
 			string name = "Espaguetis a la Carbonara";
 			string description = "Un plato clásico italiano hecho con huevos, queso, panceta y pimienta.";
-			int preparationTime = 15;
-			int cookingTime = 20;
 			int portions = 4;
-			List<string> instructions = new()
-			{
-				"1. Hervir los espaguetis.",
-				"2. Cocinar la panceta hasta que esté crujiente.",
-				"3. Mezclar los huevos y el queso en un bol.",
-				"4. Combinar los espaguetis con la panceta y la mezcla de huevo.",
-				"5. Servir con una pizca de pimienta."
-			};
 
 			double initialQuantity = 1.5;
 			string initialUnitOfMeasure = "kg";
@@ -104,7 +71,7 @@ namespace NutritionalAdvice.Test.Domain.Recipes
 			string updatedUnitOfMeasure = "lt";
 			Guid updatedIngredientId = Guid.NewGuid();
 
-			Recipe recipe = new Recipe(name, description, preparationTime, cookingTime, portions, instructions);
+			Recipe recipe = new Recipe(name, description, portions);
 
 			var recipeIngredient = new RecipeIngredient(initialUnitOfMeasure, recipe.Id, initialIngredientId);
 
@@ -126,19 +93,9 @@ namespace NutritionalAdvice.Test.Domain.Recipes
 			// Arrange
 			string name = "Espaguetis a la Carbonara";
 			string description = "Un plato clásico italiano hecho con huevos, queso, panceta y pimienta.";
-			int preparationTime = 15;
-			int cookingTime = 20;
 			int portions = 4;
-			List<string> instructions = new()
-			{
-				"1. Hervir los espaguetis.",
-				"2. Cocinar la panceta hasta que esté crujiente.",
-				"3. Mezclar los huevos y el queso en un bol.",
-				"4. Combinar los espaguetis con la panceta y la mezcla de huevo.",
-				"5. Servir con una pizca de pimienta."
-			};
 
-			Recipe recipe = new Recipe(name, description, preparationTime, cookingTime, portions, instructions);
+			Recipe recipe = new Recipe(name, description, portions);
 			var recipeIngredient = new RecipeIngredient("kg", recipe.Id, Guid.NewGuid());
 
 			recipe.RecipeIngredients.Add(recipeIngredient);
@@ -156,18 +113,9 @@ namespace NutritionalAdvice.Test.Domain.Recipes
 			// Arrange
 			string name = "Espaguetis a la Carbonara";
 			string description = "Un plato clásico italiano hecho con huevos, queso, panceta y pimienta.";
-			int preparationTime = 15;
-			int cookingTime = 20;
 			int portions = 4;
-			List<string> instructions = new()
-			{
-				"1. Hervir los espaguetis.",
-				"2. Cocinar la panceta hasta que esté crujiente.",
-				"3. Mezclar los huevos y el queso en un bol.",
-				"4. Combinar los espaguetis con la panceta y la mezcla de huevo.",
-				"5. Servir con una pizca de pimienta."
-			};
-			Recipe recipe = new Recipe(name, description, preparationTime, cookingTime, portions, instructions);
+			
+			Recipe recipe = new Recipe(name, description, portions);
 			double updatedQuantity = 2.0;
 			string updatedUnitOfMeasure = "lt";
 			Guid updatedIngredientId = Guid.NewGuid();
@@ -190,18 +138,9 @@ namespace NutritionalAdvice.Test.Domain.Recipes
 			// Arrange
 			string name = "Espaguetis a la Carbonara";
 			string description = "Un plato clásico italiano hecho con huevos, queso, panceta y pimienta.";
-			int preparationTime = 15;
-			int cookingTime = 20;
 			int portions = 4;
-			List<string> instructions = new()
-			{
-				"1. Hervir los espaguetis.",
-				"2. Cocinar la panceta hasta que esté crujiente.",
-				"3. Mezclar los huevos y el queso en un bol.",
-				"4. Combinar los espaguetis con la panceta y la mezcla de huevo.",
-				"5. Servir con una pizca de pimienta."
-			};
-			Recipe recipe = new Recipe(name, description, preparationTime, cookingTime, portions, instructions);
+			
+			Recipe recipe = new Recipe(name, description, portions);
 			double updatedQuantity = 2.0;
 			string updatedUnitOfMeasure = "lt";
 			Guid updatedIngredientId = Guid.NewGuid();

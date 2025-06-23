@@ -76,10 +76,7 @@ namespace NutritionalAdvice.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
                     Description = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
-                    PreparationTime = table.Column<int>(type: "integer", nullable: false),
-                    CookingTime = table.Column<int>(type: "integer", nullable: false),
-                    Portions = table.Column<int>(type: "integer", nullable: false),
-                    Instructions = table.Column<string>(type: "text", nullable: true)
+                    Portions = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {

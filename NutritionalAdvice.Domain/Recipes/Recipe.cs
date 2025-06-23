@@ -13,10 +13,7 @@ namespace NutritionalAdvice.Domain.Recipes
 	{
 		public string Name { get; private set; }
 		public string Description { get; private set; }
-		public int PreparationTime { get; private set; }
-		public int CookingTime { get; private set; }
 		public int Portions { get; private set; }
-		public List<string> Instructions { get; private set; } = new List<string>();
 
 		private List<RecipeIngredient> _recipeIngredients;
 
@@ -38,14 +35,11 @@ namespace NutritionalAdvice.Domain.Recipes
 			}
 		}
 
-		public Recipe(string name, string description, int preparationTime, int cookingTime, int portions, List<string> instructions) : base(Guid.NewGuid())
+		public Recipe(string name, string description, int portions) : base(Guid.NewGuid())
 		{
 			Name = name;
 			Description = description;
-			PreparationTime = preparationTime;
-			CookingTime = cookingTime;
-			Portions = portions;
-			Instructions = instructions;
+			Portions = portions;			
 			_recipeIngredients = new List<RecipeIngredient>();
 			_mealTimes = new List<MealTime>();
 
