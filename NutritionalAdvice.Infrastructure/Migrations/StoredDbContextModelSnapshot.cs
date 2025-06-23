@@ -163,9 +163,6 @@ namespace NutritionalAdvice.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("MealPlanId");
 
-                    b.Property<Guid?>("MealPlanStoredModelId")
-                        .HasColumnType("uuid");
-
                     b.Property<int>("Number")
                         .HasColumnType("integer")
                         .HasColumnName("Number");
@@ -182,7 +179,9 @@ namespace NutritionalAdvice.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MealPlanStoredModelId");
+                    b.HasIndex("MealPlanId");
+
+                    b.HasIndex("RecipeId");
 
                     b.ToTable("mealtime");
                 });
@@ -206,9 +205,6 @@ namespace NutritionalAdvice.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("RecipeId");
 
-                    b.Property<Guid?>("RecipeStoredModelId")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("UnitOfMeasure")
                         .IsRequired()
                         .HasMaxLength(10)
@@ -217,7 +213,9 @@ namespace NutritionalAdvice.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RecipeStoredModelId");
+                    b.HasIndex("IngredientId");
+
+                    b.HasIndex("RecipeId");
 
                     b.ToTable("recipeingredient");
                 });
@@ -263,16 +261,40 @@ namespace NutritionalAdvice.Infrastructure.Migrations
 
             modelBuilder.Entity("NutritionalAdvice.Infrastructure.StoredModel.Entities.MealTimeStoredModel", b =>
                 {
-                    b.HasOne("NutritionalAdvice.Infrastructure.StoredModel.Entities.MealPlanStoredModel", null)
+                    b.HasOne("NutritionalAdvice.Infrastructure.StoredModel.Entities.MealPlanStoredModel", "MealPlan")
                         .WithMany("MealTime")
-                        .HasForeignKey("MealPlanStoredModelId");
+                        .HasForeignKey("MealPlanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NutritionalAdvice.Infrastructure.StoredModel.Entities.RecipeStoredModel", "Recipe")
+                        .WithMany()
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MealPlan");
+
+                    b.Navigation("Recipe");
                 });
 
             modelBuilder.Entity("NutritionalAdvice.Infrastructure.StoredModel.Entities.RecipeIngredientStoredModel", b =>
                 {
-                    b.HasOne("NutritionalAdvice.Infrastructure.StoredModel.Entities.RecipeStoredModel", null)
+                    b.HasOne("NutritionalAdvice.Infrastructure.StoredModel.Entities.IngredientStoredModel", "Ingredient")
+                        .WithMany()
+                        .HasForeignKey("IngredientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NutritionalAdvice.Infrastructure.StoredModel.Entities.RecipeStoredModel", "Recipe")
                         .WithMany("RecipeIngredients")
-                        .HasForeignKey("RecipeStoredModelId");
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ingredient");
+
+                    b.Navigation("Recipe");
                 });
 
             modelBuilder.Entity("NutritionalAdvice.Infrastructure.StoredModel.Entities.MealPlanStoredModel", b =>

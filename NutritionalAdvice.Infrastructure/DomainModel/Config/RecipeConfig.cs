@@ -54,6 +54,7 @@ namespace NutritionalAdvice.Infrastructure.DomainModel.Config
 			//builder.HasMany(typeof(RecipeIngredient), "_recipeIngredients");
 
 			builder.Ignore(x => x.RecipeIngredients);
+			builder.Ignore(x => x.MealTimes);
 		}
 
 		public void Configure(EntityTypeBuilder<RecipeIngredient> builder)

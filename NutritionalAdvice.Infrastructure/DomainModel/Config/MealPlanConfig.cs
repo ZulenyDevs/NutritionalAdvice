@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Microsoft.Extensions.Hosting;
 using NutritionalAdvice.Domain.MealPlans;
 using NutritionalAdvice.Domain.Recipes;
 using NutritionalAdvice.Domain.Shared;
@@ -8,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Reflection.Emit;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -82,15 +85,16 @@ namespace NutritionalAdvice.Infrastructure.DomainModel.Config
 			builder.Property(x => x.RecipeId)
 				.HasColumnName("RecipeId");
 
-			builder.HasOne<MealPlan>().
-				WithMany().
-				HasForeignKey(x => x.MealPlanId).
-				OnDelete(DeleteBehavior.Cascade);
+			builder.HasOne<MealPlan>()
+				.WithMany()
+				.HasForeignKey(e => e.MealPlanId)
+				.OnDelete(DeleteBehavior.Cascade);
 
-			builder.HasOne<Recipe>().
-				WithMany().
-				HasForeignKey(x => x.RecipeId).
-				OnDelete(DeleteBehavior.Cascade);
+			builder.HasOne<Recipe>()
+				.WithMany()
+				.HasForeignKey(e => e.RecipeId)
+				.OnDelete(DeleteBehavior.Cascade);
+
 		}
 	}
 }
