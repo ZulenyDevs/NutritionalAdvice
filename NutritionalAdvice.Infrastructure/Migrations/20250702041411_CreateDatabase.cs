@@ -91,6 +91,7 @@ namespace NutritionalAdvice.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Number = table.Column<int>(type: "integer", nullable: false),
                     Type = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    Date = table.Column<DateTime>(type: "timestamp", nullable: false),
                     MealPlanId = table.Column<Guid>(type: "uuid", nullable: false),
                     RecipeId = table.Column<Guid>(type: "uuid", nullable: false)
                 },

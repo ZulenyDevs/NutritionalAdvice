@@ -27,9 +27,10 @@ namespace NutritionalAdvice.Test.WebApi.Controllers
 			Guid nutritionistId = Guid.NewGuid();
 			Guid patientId = Guid.NewGuid();
 			Guid diagnosticId = Guid.NewGuid();
+			ICollection<CreateMealTimeCommand> mealTimes = [];
 
 			var mediatorMock = new Mock<IMediator>();
-			var command = new CreateMealPlanCommand(name, description, goal, dailyCalories, 10, 10, 10, nutritionistId, patientId, diagnosticId);
+			var command = new CreateMealPlanCommand(name, description, goal, dailyCalories, 10, 10, 10, nutritionistId, patientId, diagnosticId, mealTimes);
 			var expectedId = Guid.NewGuid();
 
 			mediatorMock
@@ -57,9 +58,10 @@ namespace NutritionalAdvice.Test.WebApi.Controllers
 			Guid nutritionistId = Guid.NewGuid();
 			Guid patientId = Guid.NewGuid();
 			Guid diagnosticId = Guid.NewGuid();
+			ICollection<CreateMealTimeCommand> mealTimes = [];
 
 			var mediatorMock = new Mock<IMediator>();
-			var command = new CreateMealPlanCommand(name, description, goal, dailyCalories, 10, 10, 10, nutritionistId, patientId, diagnosticId);
+			var command = new CreateMealPlanCommand(name, description, goal, dailyCalories, 10, 10, 10, nutritionistId, patientId, diagnosticId, mealTimes);
 			var exceptionMessage = "An error occurred";
 
 			mediatorMock
@@ -140,7 +142,7 @@ namespace NutritionalAdvice.Test.WebApi.Controllers
 					NutritionistId = Guid.NewGuid(),
 					PatientId = Guid.NewGuid(),
 					DiagnosticId = Guid.NewGuid(),
-					MealTime = new List<MealTimeDto>
+					MealTimes = new List<MealTimeDto>
 					{
 						new MealTimeDto
 						{
@@ -173,7 +175,7 @@ namespace NutritionalAdvice.Test.WebApi.Controllers
 					NutritionistId = Guid.NewGuid(),
 					PatientId = Guid.NewGuid(),
 					DiagnosticId = Guid.NewGuid(),
-					MealTime = new List<MealTimeDto>
+					MealTimes = new List<MealTimeDto>
 					{
 						new MealTimeDto
 						{

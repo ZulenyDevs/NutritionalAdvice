@@ -12,7 +12,7 @@ using NutritionalAdvice.Infrastructure.StoredModel;
 namespace NutritionalAdvice.Infrastructure.Migrations
 {
     [DbContext(typeof(StoredDbContext))]
-    [Migration("20250623052840_CreateDatabase")]
+    [Migration("20250702041411_CreateDatabase")]
     partial class CreateDatabase
     {
         /// <inheritdoc />
@@ -166,6 +166,10 @@ namespace NutritionalAdvice.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("Id");
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp")
+                        .HasColumnName("Date");
+
                     b.Property<Guid>("MealPlanId")
                         .HasColumnType("uuid")
                         .HasColumnName("MealPlanId");
@@ -257,7 +261,7 @@ namespace NutritionalAdvice.Infrastructure.Migrations
             modelBuilder.Entity("NutritionalAdvice.Infrastructure.StoredModel.Entities.MealTimeStoredModel", b =>
                 {
                     b.HasOne("NutritionalAdvice.Infrastructure.StoredModel.Entities.MealPlanStoredModel", "MealPlan")
-                        .WithMany("MealTime")
+                        .WithMany("MealTimes")
                         .HasForeignKey("MealPlanId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -294,7 +298,7 @@ namespace NutritionalAdvice.Infrastructure.Migrations
 
             modelBuilder.Entity("NutritionalAdvice.Infrastructure.StoredModel.Entities.MealPlanStoredModel", b =>
                 {
-                    b.Navigation("MealTime");
+                    b.Navigation("MealTimes");
                 });
 
             modelBuilder.Entity("NutritionalAdvice.Infrastructure.StoredModel.Entities.RecipeStoredModel", b =>

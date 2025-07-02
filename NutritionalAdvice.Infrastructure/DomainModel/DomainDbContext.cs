@@ -1,4 +1,4 @@
-﻿using Joseco.Outbox.Contracts.Model;
+using Joseco.Outbox.Contracts.Model;
 using Joseco.Outbox.EFCore.Persistence;
 using Microsoft.EntityFrameworkCore;
 using NutritionalAdvice.Domain.Abstractions;

@@ -36,10 +36,12 @@ namespace NutritionalAdvice.Infrastructure.Handlers.MealPlan
 				NutritionistId = i.NutritionistId,
 				PatientId = i.PatientId,
 				DiagnosticId = i.DiagnosticId,
-				MealTime = i.MealTime.Select(m => new MealTimeDto {
+				MealTimes = i.MealTimes.Select(m => new MealTimeDto {
 					Id = m.Id,
 					Number = m.Number,
 					Type = m.Type,
+					Date = m.Date,
+					MealPlanId = m.MealPlanId,
 					RecipeId = m.RecipeId
 				}).ToList()
 

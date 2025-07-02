@@ -25,11 +25,12 @@ namespace NutritionalAdvice.Test.Domain.MealPlans
 			Guid nutritionistId = Guid.NewGuid();
 			Guid patientId = Guid.NewGuid();
 			Guid diagnosticId = Guid.NewGuid();
+			List<(int number, string type, DateTimeOffset date, Guid recipeId)> mealTimes = new List<(int number, string type, DateTimeOffset date, Guid recipeId)> { };
 
 			// act
 			IMealPlanFactory mealPlanFactory = new MealPlanFactory();
 			MealPlan mealPlanSaved = mealPlanFactory.Create(name, description, goal, dailyCalories,
-				dailyProtein, dailyCarbohydrates, dailyFats, nutritionistId, patientId, diagnosticId);
+				dailyProtein, dailyCarbohydrates, dailyFats, nutritionistId, patientId, diagnosticId, mealTimes);
 
 			// assert
 			Assert.Equal(name, mealPlanSaved.Name);
@@ -59,9 +60,10 @@ namespace NutritionalAdvice.Test.Domain.MealPlans
 			Guid nutritionistId = Guid.Empty; // NutritionistId vacío
 			Guid patientId = Guid.Empty; // PatientId vacío
 			Guid diagnosticId = Guid.Empty; // PatientId vacío
+			List<(int number, string type, DateTimeOffset date, Guid recipeId)> mealTimes = new List<(int number, string type, DateTimeOffset date, Guid recipeId)> { };
 
 			// Act & Assert
-			var exception = Assert.Throws<ArgumentException>(() => factory.Create(name, description, goal, dailyCalories, dailyProtein, dailyCarbohydrates, dailyFats, nutritionistId, patientId, diagnosticId));
+			var exception = Assert.Throws<ArgumentException>(() => factory.Create(name, description, goal, dailyCalories, dailyProtein, dailyCarbohydrates, dailyFats, nutritionistId, patientId, diagnosticId, mealTimes));
 			Assert.Equal("nutritionistId, patientId and diagnosticId are required", exception.Message);
 		}
 	}

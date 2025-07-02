@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Hosting;
@@ -65,7 +65,10 @@ namespace NutritionalAdvice.Infrastructure.DomainModel.Config
 			builder.Property(x => x.DiagnosticId)
 				.HasColumnName("DiagnosticId");
 
-			builder.Ignore(x => x.MealTimes);
+			builder.HasMany(x => x.MealTimes)
+				.WithOne()
+				.HasForeignKey(x => x.MealPlanId)
+				.OnDelete(DeleteBehavior.Cascade);
 		}
 
 		public void Configure(EntityTypeBuilder<MealTime> builder)
@@ -82,16 +85,15 @@ namespace NutritionalAdvice.Infrastructure.DomainModel.Config
 			builder.Property(x => x.Type)
 				.HasColumnName("Type");
 
+			builder.Property(x => x.Date)
+				.HasColumnName("Date");
+
 			builder.Property(x => x.MealPlanId)
 				.HasColumnName("MealPlanId");
 
 			builder.Property(x => x.RecipeId)
 				.HasColumnName("RecipeId");
 
-			builder.HasOne<MealPlan>()
-				.WithMany()
-				.HasForeignKey(e => e.MealPlanId)
-				.OnDelete(DeleteBehavior.Cascade);
 
 			builder.HasOne<Recipe>()
 				.WithMany()

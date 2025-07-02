@@ -65,7 +65,7 @@ namespace NutritionalAdvice.Test.Infrastructure.Handlers.MealPlan
 					NutritionistId = Guid.NewGuid(),
 					PatientId = Guid.NewGuid(),
 					DiagnosticId = Guid.NewGuid(),
-					MealTime = new List<MealTimeStoredModel>
+					MealTimes = new List<MealTimeStoredModel>
 					{
 						new MealTimeStoredModel
 						{
@@ -106,7 +106,7 @@ namespace NutritionalAdvice.Test.Infrastructure.Handlers.MealPlan
 					NutritionistId = Guid.NewGuid(),
 					PatientId = Guid.NewGuid(),
 					DiagnosticId = Guid.NewGuid(),
-					MealTime = new List<MealTimeStoredModel>
+					MealTimes = new List<MealTimeStoredModel>
 					{
 						new MealTimeStoredModel
 						{

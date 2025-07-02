@@ -20,4 +20,4 @@ El microservicio se encarga de la gestión del plan alimenticio del paciente, ab
 - Creación de planes alimenticios balanceados y personalizados.
 - Ajuste de las recetas y planes según las recomendaciones del nutricionista.
 
-![Diagrama](./M2-task2-Diagram.png)
+![Diagrama](./PlanAlimenticio-Diagram.png)

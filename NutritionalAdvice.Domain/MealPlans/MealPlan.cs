@@ -1,4 +1,4 @@
-﻿using NutritionalAdvice.Domain.Abstractions;
+using NutritionalAdvice.Domain.Abstractions;
 using NutritionalAdvice.Domain.Shared;
 using System;
 using System.Collections.Generic;
@@ -45,13 +45,13 @@ namespace NutritionalAdvice.Domain.MealPlans
 		}
 
 
-		public void AddMealTime(int number, string type, Guid mealPlanId, Guid recipeId)
+		public void AddMealTime(int number, string type, DateTimeOffset date, Guid recipeId)
 		{
-			MealTime mealTime = new MealTime(number, type, mealPlanId, recipeId);
+			MealTime mealTime = new MealTime(number, type, date, Id, recipeId);
 			_mealTimes.Add(mealTime);
 		}
 
-		public void updateMealTime(Guid id, int number, string type, Guid recipeId)
+		public void updateMealTime(Guid id, int number, string type, DateTime date, Guid recipeId)
 		{
 			MealTime mealTime = _mealTimes.FirstOrDefault(i => i.Id == id);
 			if (mealTime == null)
@@ -59,7 +59,7 @@ namespace NutritionalAdvice.Domain.MealPlans
 				throw new InvalidOperationException("MealTime not found in MealPlan");
 			}
 
-			mealTime.Update(number, type, recipeId);
+			mealTime.Update(number, type, date, recipeId);
 		}
 
 		public void RemoveMealTime(Guid id)

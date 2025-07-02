@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -49,7 +49,7 @@ namespace NutritionalAdvice.Infrastructure.StoredModel.Entities
 		[Column("DiagnosticId")]
 		public Guid DiagnosticId { get; set; }
 
-		public List<MealTimeStoredModel> MealTime { get; set; }
+		public List<MealTimeStoredModel> MealTimes { get; set; }
 
 	}
 }
