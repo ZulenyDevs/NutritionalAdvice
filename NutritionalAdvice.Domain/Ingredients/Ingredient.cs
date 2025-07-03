@@ -1,4 +1,5 @@
 ﻿using NutritionalAdvice.Domain.Abstractions;
+using NutritionalAdvice.Domain.Recipes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,15 @@ namespace NutritionalAdvice.Domain.Ingredients
 		public string Variety { get; private set; }
 		public string Benefits { get; private set; }
 		public string DishCategory { get; private set; }
+		private List<RecipeIngredient> _recipeIngredients;
+
+		public ICollection<RecipeIngredient> RecipeIngredients
+		{
+			get
+			{
+				return _recipeIngredients;
+			}
+		}
 
 		public Ingredient(string name, string variety, string benefits, string dishCategory) : base(Guid.NewGuid())
 		{
@@ -20,6 +30,7 @@ namespace NutritionalAdvice.Domain.Ingredients
 			Variety = variety;
 			Benefits = benefits;
 			DishCategory = dishCategory;
+			_recipeIngredients = new List<RecipeIngredient>();
 		}
 	}
 }

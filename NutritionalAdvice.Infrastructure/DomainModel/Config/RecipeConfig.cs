@@ -32,28 +32,11 @@ namespace NutritionalAdvice.Infrastructure.DomainModel.Config
 			builder.Property(x => x.Description)
 				.HasColumnName("Description");
 
-			builder.Property(x => x.PreparationTime)
-				.HasColumnName("PreparationTime");
-
-			builder.Property(x => x.CookingTime)
-				.HasColumnName("CookingTime");
-
 			builder.Property(x => x.Portions)
 				.HasColumnName("Portions");
 
-			var instructionsConverter = new ValueConverter<List<string>, string>(
-				v => string.Join(";", v),
-				v => v.Split(";", StringSplitOptions.None).ToList()
-			);
-
-			builder.Property(x => x.Instructions)
-				.HasConversion(
-					v => JsonSerializer.Serialize(v, (JsonSerializerOptions)null),
-					v => JsonSerializer.Deserialize<List<string>>(v, (JsonSerializerOptions)null))
-				.HasColumnName("Instructions");
-			//builder.HasMany(typeof(RecipeIngredient), "_recipeIngredients");
-
 			builder.Ignore(x => x.RecipeIngredients);
+			builder.Ignore(x => x.MealTimes);
 		}
 
 		public void Configure(EntityTypeBuilder<RecipeIngredient> builder)

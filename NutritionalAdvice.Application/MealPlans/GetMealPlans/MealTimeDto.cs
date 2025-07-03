@@ -11,6 +11,7 @@ namespace NutritionalAdvice.Application.MealPlans.GetMealPlans
 		public Guid Id { get; set; }
 		public int Number { get; set; }
 		public string Type { get; set; }
+		public DateTime Date { get; set; }
 		public Guid MealPlanId { get; set; }
 		public Guid RecipeId { get; set; }
 	}

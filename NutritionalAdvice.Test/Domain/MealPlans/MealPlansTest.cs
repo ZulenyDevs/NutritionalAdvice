@@ -20,9 +20,10 @@ namespace NutritionalAdvice.Test.Domain.MealPlans
 			int dailyCalories = 20;
 			Guid nutritionistId = new Guid();
 			Guid patientId = new Guid();
+			Guid diagnosticId = new Guid();
 
 			// act
-			MealPlan mealPlan = new MealPlan(name, description, goal, dailyCalories, nutritionistId, patientId);
+			MealPlan mealPlan = new MealPlan(name, description, goal, dailyCalories, nutritionistId, patientId, diagnosticId);
 
 			// assert
 			Assert.Equal(name, mealPlan.Name);
@@ -31,20 +32,22 @@ namespace NutritionalAdvice.Test.Domain.MealPlans
 			Assert.Equal(dailyCalories, mealPlan.DailyCalories);
 			Assert.Equal(nutritionistId, mealPlan.NutritionistId);
 			Assert.Equal(patientId, mealPlan.PatientId);
+			Assert.Equal(diagnosticId, mealPlan.DiagnosticId);
 		}
 
 		[Fact]
 		public void AddMealTime_ShouldAddMealTimeToMealPlan()
 		{
 			// Arrange
-			var mealPlan = new MealPlan("Test Meal Plan", "This is a test meal plan.", "Lose weight", 2000, Guid.NewGuid(), Guid.NewGuid());
+			var mealPlan = new MealPlan("Test Meal Plan", "This is a test meal plan.", "Lose weight", 2000, Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid());
 			int number = 1;
 			string type = "Breakfast";
+			DateTime date = DateTime.Now;
 			Guid mealPlanId = mealPlan.Id;
 			Guid recipeId = Guid.NewGuid();
 
 			// Act
-			mealPlan.AddMealTime(number, type, mealPlanId, recipeId);
+			mealPlan.AddMealTime(number, type, date, recipeId);
 
 			// Assert
 			var mealTimes = GetMealTimesFromMealPlan(mealPlan);
@@ -58,22 +61,24 @@ namespace NutritionalAdvice.Test.Domain.MealPlans
 		public void UpdateMealTime_ShouldUpdateExistingMealTime()
 		{
 			// Arrange
-			var mealPlan = new MealPlan("Test Meal Plan", "This is a test meal plan.", "Lose weight", 2000, Guid.NewGuid(), Guid.NewGuid());
+			var mealPlan = new MealPlan("Test Meal Plan", "This is a test meal plan.", "Lose weight", 2000, Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid());
 			int initialNumber = 1;
 			string initialType = "Breakfast";
+			DateTime initialDate = DateTime.Now;
 			Guid mealPlanId = mealPlan.Id;
 			Guid recipeId = Guid.NewGuid();
-			mealPlan.AddMealTime(initialNumber, initialType, mealPlanId, recipeId);
+			mealPlan.AddMealTime(initialNumber, initialType, initialDate, recipeId);
 
 			var mealTimes = GetMealTimesFromMealPlan(mealPlan);
 			var mealTime = mealTimes.First();
 
 			int updatedNumber = 2;
 			string updatedType = "Lunch";
+			DateTime updatedDate = DateTime.Now;
 			Guid updatedRecipeId = Guid.NewGuid();
 
 			// Act
-			mealPlan.updateMealTime(mealTime.Id, updatedNumber, updatedType, updatedRecipeId);
+			mealPlan.updateMealTime(mealTime.Id, updatedNumber, updatedType, updatedDate, updatedRecipeId);
 
 			// Assert
 			Assert.Equal(updatedNumber, mealTime.Number);
@@ -85,23 +90,24 @@ namespace NutritionalAdvice.Test.Domain.MealPlans
 		public void UpdateMealTime_ShouldThrowException_WhenMealTimeNotFound()
 		{
 			// Arrange
-			var mealPlan = new MealPlan("Test Meal Plan", "This is a test meal plan.", "Lose weight", 2000, Guid.NewGuid(), Guid.NewGuid());
+			var mealPlan = new MealPlan("Test Meal Plan", "This is a test meal plan.", "Lose weight", 2000, Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid());
 			var nonExistentId = Guid.NewGuid();
 
 			// Act & Assert
-			Assert.Throws<InvalidOperationException>(() => mealPlan.updateMealTime(nonExistentId, 1, "Breakfast", Guid.NewGuid()));
+			Assert.Throws<InvalidOperationException>(() => mealPlan.updateMealTime(nonExistentId, 1, "Breakfast", DateTime.Now, Guid.NewGuid()));
 		}
 
 		[Fact]
 		public void RemoveMealTime_ShouldRemoveMealTimeFromMealPlan()
 		{
 			// Arrange
-			var mealPlan = new MealPlan("Test Meal Plan", "This is a test meal plan.", "Lose weight", 2000, Guid.NewGuid(), Guid.NewGuid());
+			var mealPlan = new MealPlan("Test Meal Plan", "This is a test meal plan.", "Lose weight", 2000, Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid());
 			int number = 1;
 			string type = "Breakfast";
+			DateTime date = DateTime.Now;
 			Guid mealPlanId = mealPlan.Id;
 			Guid recipeId = Guid.NewGuid();
-			mealPlan.AddMealTime(number, type, mealPlanId, recipeId);
+			mealPlan.AddMealTime(number, type, date, recipeId);
 
 			var mealTimes = GetMealTimesFromMealPlan(mealPlan);
 			var mealTime = mealTimes.First();
@@ -117,7 +123,7 @@ namespace NutritionalAdvice.Test.Domain.MealPlans
 		public void RemoveMealTime_ShouldThrowException_WhenMealTimeNotFound()
 		{
 			// Arrange
-			var mealPlan = new MealPlan("Test Meal Plan", "This is a test meal plan.", "Lose weight", 2000, Guid.NewGuid(), Guid.NewGuid());
+			var mealPlan = new MealPlan("Test Meal Plan", "This is a test meal plan.", "Lose weight", 2000, Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid());
 			var nonExistentId = Guid.NewGuid();
 
 			// Act & Assert

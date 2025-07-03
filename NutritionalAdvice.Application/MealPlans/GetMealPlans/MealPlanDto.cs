@@ -18,7 +18,8 @@ namespace NutritionalAdvice.Application.MealPlans.GetMealPlans
 		public double DailyFats { get; set; }
 		public Guid NutritionistId { get; set; }
 		public Guid PatientId { get; set; }
-		public List<MealTimeDto> MealTime { get; set; }
+		public Guid DiagnosticId { get; set; }
+		public List<MealTimeDto> MealTimes { get; set; }
 
 	}
 }

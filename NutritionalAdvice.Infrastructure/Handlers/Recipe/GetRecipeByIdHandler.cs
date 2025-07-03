@@ -37,10 +37,7 @@ namespace NutritionalAdvice.Infrastructure.Handlers.Recipe
 				Id = recipe.Id,
 				Name = recipe.Name,
 				Description = recipe.Description,
-				PreparationTime = recipe.PreparationTime,
-				CookingTime = recipe.CookingTime,
 				Portions = recipe.Portions,
-				//Instructions = recipe.Instructions,
 				RecipeIngredients = recipe.RecipeIngredients.Select(i => new RecipeIngredientDto {
 					Id = i.Id,
 					Quantity = i.Quantity,

@@ -24,11 +24,13 @@ namespace NutritionalAdvice.Test.Domain.MealPlans
 			QuantityValue dailyFats = 0;
 			Guid nutritionistId = Guid.NewGuid();
 			Guid patientId = Guid.NewGuid();
+			Guid diagnosticId = Guid.NewGuid();
+			List<(int number, string type, DateTimeOffset date, Guid recipeId)> mealTimes = new List<(int number, string type, DateTimeOffset date, Guid recipeId)> { };
 
 			// act
 			IMealPlanFactory mealPlanFactory = new MealPlanFactory();
 			MealPlan mealPlanSaved = mealPlanFactory.Create(name, description, goal, dailyCalories,
-				dailyProtein, dailyCarbohydrates, dailyFats, nutritionistId, patientId);
+				dailyProtein, dailyCarbohydrates, dailyFats, nutritionistId, patientId, diagnosticId, mealTimes);
 
 			// assert
 			Assert.Equal(name, mealPlanSaved.Name);
@@ -40,6 +42,7 @@ namespace NutritionalAdvice.Test.Domain.MealPlans
 			Assert.Equal(dailyFats, mealPlanSaved.DailyFats);
 			Assert.Equal(nutritionistId, mealPlanSaved.NutritionistId);
 			Assert.Equal(patientId, mealPlanSaved.PatientId);
+			Assert.Equal(diagnosticId, mealPlanSaved.DiagnosticId);
 		}
 
 		[Fact]
@@ -56,10 +59,12 @@ namespace NutritionalAdvice.Test.Domain.MealPlans
 			double dailyFats = 70;
 			Guid nutritionistId = Guid.Empty; // NutritionistId vacío
 			Guid patientId = Guid.Empty; // PatientId vacío
+			Guid diagnosticId = Guid.Empty; // PatientId vacío
+			List<(int number, string type, DateTimeOffset date, Guid recipeId)> mealTimes = new List<(int number, string type, DateTimeOffset date, Guid recipeId)> { };
 
 			// Act & Assert
-			var exception = Assert.Throws<ArgumentException>(() => factory.Create(name, description, goal, dailyCalories, dailyProtein, dailyCarbohydrates, dailyFats, nutritionistId, patientId));
-			Assert.Equal("nutritionistId and patientId are required", exception.Message);
+			var exception = Assert.Throws<ArgumentException>(() => factory.Create(name, description, goal, dailyCalories, dailyProtein, dailyCarbohydrates, dailyFats, nutritionistId, patientId, diagnosticId, mealTimes));
+			Assert.Equal("nutritionistId, patientId and diagnosticId are required", exception.Message);
 		}
 	}
 }

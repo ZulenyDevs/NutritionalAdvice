@@ -27,20 +27,10 @@ namespace NutritionalAdvice.Test.WebApi.Controllers
 			// Arrange
 			string name = "Espaguetis a la Carbonara";
 			string description = "Un plato clásico italiano hecho con huevos, queso, panceta y pimienta.";
-			int preparationTime = 15;
-			int cookingTime = 20;
 			int portions = 4;
-			List<string> instructions = new()
-			{
-				"1. Hervir los espaguetis.",
-				"2. Cocinar la panceta hasta que esté crujiente.",
-				"3. Mezclar los huevos y el queso en un bol.",
-				"4. Combinar los espaguetis con la panceta y la mezcla de huevo.",
-				"5. Servir con una pizca de pimienta."
-			};
 
 			var mediatorMock = new Mock<IMediator>();
-			var command = new CreateRecipeCommand(name, description, preparationTime, cookingTime, portions, instructions);
+			var command = new CreateRecipeCommand(name, description, portions);
 			var expectedId = Guid.NewGuid();
 
 			_mediatorMock
@@ -63,20 +53,10 @@ namespace NutritionalAdvice.Test.WebApi.Controllers
 			// Arrange
 			string name = "Espaguetis a la Carbonara";
 			string description = "Un plato clásico italiano hecho con huevos, queso, panceta y pimienta.";
-			int preparationTime = 15;
-			int cookingTime = 20;
 			int portions = 4;
-			List<string> instructions = new()
-			{
-				"1. Hervir los espaguetis.",
-				"2. Cocinar la panceta hasta que esté crujiente.",
-				"3. Mezclar los huevos y el queso en un bol.",
-				"4. Combinar los espaguetis con la panceta y la mezcla de huevo.",
-				"5. Servir con una pizca de pimienta."
-			};
 
 			var _mediatorMock = new Mock<IMediator>();
-			var command = new CreateRecipeCommand(name, description, preparationTime, cookingTime, portions, instructions);
+			var command = new CreateRecipeCommand(name, description, portions);
 			var exceptionMessage = "An error occurred";
 
 			_mediatorMock
@@ -104,12 +84,7 @@ namespace NutritionalAdvice.Test.WebApi.Controllers
 				Id = recipeId,
 				Name = "Spaghetti Bolognese",
 				Description = "Classic Italian pasta dish",
-				PreparationTime = 15,
-				CookingTime = 30,
 				Portions = 4,
-				Instructions = new List<string>{
-					"Boil pasta", "cook sauce", "mix together"
-				},
 				RecipeIngredients = new List<RecipeIngredientDto>
 				{
 					new RecipeIngredientDto { Id = Guid.NewGuid(), Quantity = 200, UnitOfMeasure = "g", RecipeId = Guid.NewGuid(), IngredientId = Guid.NewGuid() },

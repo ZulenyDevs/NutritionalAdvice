@@ -33,6 +33,8 @@ namespace NutritionalAdvice.Infrastructure.DomainModel.Config
 
 			builder.Property(x => x.DishCategory)
 				.HasColumnName("DishCategory");
+
+			builder.Ignore(x => x.RecipeIngredients);
 		}
 	}
 }

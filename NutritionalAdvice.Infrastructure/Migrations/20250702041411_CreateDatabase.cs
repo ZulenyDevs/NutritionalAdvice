@@ -42,7 +42,8 @@ namespace NutritionalAdvice.Infrastructure.Migrations
                     DailyCarbohydrates = table.Column<double>(type: "double precision", nullable: false),
                     DailyFats = table.Column<double>(type: "double precision", nullable: false),
                     NutritionistId = table.Column<Guid>(type: "uuid", nullable: false),
-                    PatientId = table.Column<Guid>(type: "uuid", nullable: false)
+                    PatientId = table.Column<Guid>(type: "uuid", nullable: false),
+                    DiagnosticId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -76,10 +77,7 @@ namespace NutritionalAdvice.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
                     Description = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
-                    PreparationTime = table.Column<int>(type: "integer", nullable: false),
-                    CookingTime = table.Column<int>(type: "integer", nullable: false),
-                    Portions = table.Column<int>(type: "integer", nullable: false),
-                    Instructions = table.Column<string>(type: "text", nullable: true)
+                    Portions = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -93,18 +91,25 @@ namespace NutritionalAdvice.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Number = table.Column<int>(type: "integer", nullable: false),
                     Type = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    Date = table.Column<DateTime>(type: "timestamp", nullable: false),
                     MealPlanId = table.Column<Guid>(type: "uuid", nullable: false),
-                    RecipeId = table.Column<Guid>(type: "uuid", nullable: false),
-                    MealPlanStoredModelId = table.Column<Guid>(type: "uuid", nullable: true)
+                    RecipeId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_mealtime", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_mealtime_mealplan_MealPlanStoredModelId",
-                        column: x => x.MealPlanStoredModelId,
+                        name: "FK_mealtime_mealplan_MealPlanId",
+                        column: x => x.MealPlanId,
                         principalTable: "mealplan",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_mealtime_recipe_RecipeId",
+                        column: x => x.RecipeId,
+                        principalTable: "recipe",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -115,36 +120,49 @@ namespace NutritionalAdvice.Infrastructure.Migrations
                     Quantity = table.Column<double>(type: "double precision", nullable: false),
                     UnitOfMeasure = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
                     RecipeId = table.Column<Guid>(type: "uuid", nullable: false),
-                    IngredientId = table.Column<Guid>(type: "uuid", nullable: false),
-                    RecipeStoredModelId = table.Column<Guid>(type: "uuid", nullable: true)
+                    IngredientId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_recipeingredient", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_recipeingredient_recipe_RecipeStoredModelId",
-                        column: x => x.RecipeStoredModelId,
+                        name: "FK_recipeingredient_ingredient_IngredientId",
+                        column: x => x.IngredientId,
+                        principalTable: "ingredient",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_recipeingredient_recipe_RecipeId",
+                        column: x => x.RecipeId,
                         principalTable: "recipe",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_mealtime_MealPlanStoredModelId",
+                name: "IX_mealtime_MealPlanId",
                 table: "mealtime",
-                column: "MealPlanStoredModelId");
+                column: "MealPlanId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_recipeingredient_RecipeStoredModelId",
+                name: "IX_mealtime_RecipeId",
+                table: "mealtime",
+                column: "RecipeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_recipeingredient_IngredientId",
                 table: "recipeingredient",
-                column: "RecipeStoredModelId");
+                column: "IngredientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_recipeingredient_RecipeId",
+                table: "recipeingredient",
+                column: "RecipeId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "ingredient");
-
             migrationBuilder.DropTable(
                 name: "mealtime");
 
@@ -157,6 +175,9 @@ namespace NutritionalAdvice.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "mealplan");
+
+            migrationBuilder.DropTable(
+                name: "ingredient");
 
             migrationBuilder.DropTable(
                 name: "recipe");

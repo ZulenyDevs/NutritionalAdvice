@@ -1,4 +1,5 @@
 ﻿using NutritionalAdvice.Domain.Abstractions;
+using NutritionalAdvice.Domain.MealPlans;
 using NutritionalAdvice.Domain.Recipes.Events;
 using System;
 using System.Collections.Generic;
@@ -12,12 +13,12 @@ namespace NutritionalAdvice.Domain.Recipes
 	{
 		public string Name { get; private set; }
 		public string Description { get; private set; }
-		public int PreparationTime { get; private set; }
-		public int CookingTime { get; private set; }
 		public int Portions { get; private set; }
-		public List<string> Instructions { get; private set; } = new List<string>();
 
 		private List<RecipeIngredient> _recipeIngredients;
+
+		private List<MealTime> _mealTimes;
+
 		public ICollection<RecipeIngredient> RecipeIngredients
 		{
 			get
@@ -26,15 +27,21 @@ namespace NutritionalAdvice.Domain.Recipes
 			}
 		}
 
-		public Recipe(string name, string description, int preparationTime, int cookingTime, int portions, List<string> instructions) : base(Guid.NewGuid())
+		public ICollection<MealTime> MealTimes
+		{
+			get
+			{
+				return _mealTimes;
+			}
+		}
+
+		public Recipe(string name, string description, int portions) : base(Guid.NewGuid())
 		{
 			Name = name;
 			Description = description;
-			PreparationTime = preparationTime;
-			CookingTime = cookingTime;
-			Portions = portions;
-			Instructions = instructions;
+			Portions = portions;			
 			_recipeIngredients = new List<RecipeIngredient>();
+			_mealTimes = new List<MealTime>();
 
 			AddDomainEvent(new RecipeCreated(Id, Name, Description));
 		}

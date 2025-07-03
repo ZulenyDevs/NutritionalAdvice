@@ -24,11 +24,16 @@ namespace NutritionalAdvice.Infrastructure.StoredModel.Entities
 		[StringLength(50)]
 		public string Type { get; set; }
 
+		[Column("Date", TypeName = "timestamp")]
+		public DateTime Date { get; set; }
+
 		[Column("MealPlanId")]
 		public Guid MealPlanId { get; set; }
+		public MealPlanStoredModel MealPlan { get; set; }
 
 
 		[Column("RecipeId")]
 		public Guid RecipeId { get; set; }
+		public RecipeStoredModel Recipe { get; set; }
 	}
 }

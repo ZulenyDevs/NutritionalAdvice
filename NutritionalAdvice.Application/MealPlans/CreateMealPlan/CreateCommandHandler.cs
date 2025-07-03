@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 using NutritionalAdvice.Domain.Abstractions;
 using NutritionalAdvice.Domain.MealPlans;
 using System;
@@ -26,7 +26,15 @@ namespace NutritionalAdvice.Application.MealPlans.CreateMealPlan
 		}
 		public async Task<Guid> Handle(CreateMealPlanCommand request, CancellationToken cancellationToken)
 		{
-			var mealPlan = _mealPlanFactory.Create(request.name, request.description, request.goal, request.dailyCalories, request.dailyProtein, request.dailyCarbohydrates, request.dailyFats, request.nutritionistId, request.patientId);
+			var mealTimes = request.mealTimes
+									.Select(mt => (
+										mt.number, 
+										mt.type, 
+										mt.date.ToUniversalTime(), 
+										mt.recipeId
+									))
+									.ToList();
+			var mealPlan = _mealPlanFactory.Create(request.name, request.description, request.goal, request.dailyCalories, request.dailyProtein, request.dailyCarbohydrates, request.dailyFats, request.nutritionistId, request.patientId, request.diagnosticId, mealTimes);
 
 			await _mealPlanRepository.AddAsync(mealPlan);
 

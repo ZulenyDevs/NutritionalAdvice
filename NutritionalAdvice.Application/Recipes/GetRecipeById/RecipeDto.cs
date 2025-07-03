@@ -11,10 +11,7 @@ namespace NutritionalAdvice.Application.Recipes.GetRecipeById
 		public Guid Id { get; set; }
 		public string Name { get; set; }
 		public string Description { get; set; }
-		public int PreparationTime { get; set; }
-		public int CookingTime { get; set; }
 		public int Portions { get; set; }
-		public List<string> Instructions { get; set; }
 
 		public List<RecipeIngredientDto> RecipeIngredients;
 	}

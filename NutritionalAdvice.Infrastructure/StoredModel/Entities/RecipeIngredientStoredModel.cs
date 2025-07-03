@@ -26,8 +26,10 @@ namespace NutritionalAdvice.Infrastructure.StoredModel.Entities
 
 		[Column("RecipeId")]
 		public Guid RecipeId { get; set; }
+		public RecipeStoredModel Recipe { get; set; }
 
 		[Column("IngredientId")]
 		public Guid IngredientId { get; set; }
+		public IngredientStoredModel Ingredient { get; set; }
 	}
 }

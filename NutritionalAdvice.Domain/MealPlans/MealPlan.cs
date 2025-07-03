@@ -1,4 +1,4 @@
-﻿using NutritionalAdvice.Domain.Abstractions;
+using NutritionalAdvice.Domain.Abstractions;
 using NutritionalAdvice.Domain.Shared;
 using System;
 using System.Collections.Generic;
@@ -19,6 +19,7 @@ namespace NutritionalAdvice.Domain.MealPlans
 		public QuantityValue DailyFats { get; private set; }
 		public Guid NutritionistId { get; private set; }
 		public Guid PatientId { get; private set; }
+		public Guid DiagnosticId { get; set; }
 		private List<MealTime> _mealTimes;
 		public ICollection<MealTime> MealTimes
 		{
@@ -28,7 +29,7 @@ namespace NutritionalAdvice.Domain.MealPlans
 			}
 		}
 
-		public MealPlan(string name, string description, string goal, int dailyCalories, Guid nutritionistId, Guid patientId) : base(Guid.NewGuid())
+		public MealPlan(string name, string description, string goal, int dailyCalories, Guid nutritionistId, Guid patientId, Guid diagnosticId) : base(Guid.NewGuid())
 		{
 			Name = name;
 			Description = description;
@@ -39,17 +40,18 @@ namespace NutritionalAdvice.Domain.MealPlans
 			DailyFats = 0;
 			NutritionistId = nutritionistId;
 			PatientId = patientId;
+			DiagnosticId = diagnosticId;
 			_mealTimes = new List<MealTime>();
 		}
 
 
-		public void AddMealTime(int number, string type, Guid mealPlanId, Guid recipeId)
+		public void AddMealTime(int number, string type, DateTimeOffset date, Guid recipeId)
 		{
-			MealTime mealTime = new MealTime(number, type, mealPlanId, recipeId);
+			MealTime mealTime = new MealTime(number, type, date, Id, recipeId);
 			_mealTimes.Add(mealTime);
 		}
 
-		public void updateMealTime(Guid id, int number, string type, Guid recipeId)
+		public void updateMealTime(Guid id, int number, string type, DateTime date, Guid recipeId)
 		{
 			MealTime mealTime = _mealTimes.FirstOrDefault(i => i.Id == id);
 			if (mealTime == null)
@@ -57,7 +59,7 @@ namespace NutritionalAdvice.Domain.MealPlans
 				throw new InvalidOperationException("MealTime not found in MealPlan");
 			}
 
-			mealTime.Update(number, type, recipeId);
+			mealTime.Update(number, type, date, recipeId);
 		}
 
 		public void RemoveMealTime(Guid id)

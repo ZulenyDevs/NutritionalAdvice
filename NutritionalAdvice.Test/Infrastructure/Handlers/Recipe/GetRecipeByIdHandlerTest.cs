@@ -35,10 +35,7 @@ namespace NutritionalAdvice.Test.Infrastructure.Handlers.Recipe
 				Id = recipeId,
 				Name = "Spaghetti Bolognese",
 				Description = "Classic Italian pasta dish",
-				PreparationTime = 15,
-				CookingTime = 30,
 				Portions = 4,
-				Instructions = "Boil pasta, cook sauce, mix together",
 				RecipeIngredients = new List<RecipeIngredientStoredModel>
 				{
 					new RecipeIngredientStoredModel { Id = Guid.NewGuid(), Quantity = 200, UnitOfMeasure = "g", RecipeId = Guid.NewGuid(), IngredientId = Guid.NewGuid() },
