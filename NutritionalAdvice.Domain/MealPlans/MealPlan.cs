@@ -1,11 +1,9 @@
 using NutritionalAdvice.Domain.Abstractions;
+using NutritionalAdvice.Domain.MealPlans.Events;
 using NutritionalAdvice.Domain.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace NutritionalAdvice.Domain.MealPlans
 {
 	public class MealPlan : AggregateRoot
@@ -70,6 +68,11 @@ namespace NutritionalAdvice.Domain.MealPlans
 				throw new InvalidOperationException("MealTime not found in MealPlan");
 			}
 			_mealTimes.Remove(mealTime);
+		}
+
+		public void Complete()
+		{
+			AddDomainEvent(new MealPlanCreated(Id, Name, Description, Goal, DailyCalories, DailyProtein, DailyCarbohydrates, DailyFats, NutritionistId, PatientId, DiagnosticId, _mealTimes));
 		}
 	}
 }
