@@ -1,6 +1,6 @@
 services:
   nutritionaladvice-microservice:
-    image: zulenycr/nutritionaladvice-microservice:v8
+    image: zulenycr/nutritionaladvice-microservice:v9
     container_name: nutritionaladvice-microservice
     ports:
       - "5002:5000"  # Expone el puerto 5000 del contenedor en el puerto 5000 del host
@@ -17,7 +17,7 @@ services:
       - nur-network
   # Servicio para la base de datos MySQL
   db_service:
-    image: zulenycr/nutritionaladvice-db:v2
+    image: zulenycr/nutritionaladvice-db:v2.1
     container_name: db_service
     environment:
       - POSTGRES_DB=NutritionalAdvice
