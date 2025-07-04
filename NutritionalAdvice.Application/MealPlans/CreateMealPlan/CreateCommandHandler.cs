@@ -38,6 +38,8 @@ namespace NutritionalAdvice.Application.MealPlans.CreateMealPlan
 
 			await _mealPlanRepository.AddAsync(mealPlan);
 
+			mealPlan.Complete();
+
 			await _unitOfWork.CommitAsync(cancellationToken);
 
 			return mealPlan.Id;
